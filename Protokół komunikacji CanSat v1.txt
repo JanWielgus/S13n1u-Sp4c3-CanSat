@@ -1,0 +1,64 @@
+Opis protokołu CanSat CanSat-Master Serial:
+
+1. Na konkretnych pozycjach pakietu kodowanego COBS znajdują się kolejne dane.
+   Bajty występują w naturalnej kolejności dla AVR i PC - Little Endian - najpierw idzie niższy bajt
+
+2. Pakiet kierunku Master--->CanSat występuje tylko w jednym typie:
+	0. XOR wszystkich następnych bajtów (suma kontrolna) (unsigned 8b)
+	1. Przełączniki (unsigned 8b); bit 7 - rozłóż spadochon, bit 6 - autoryzacja rozłorzenia spadochronu,
+   
+
+3. Pakiet kierunku CanSat--->Master może występować w kilku typach:
+
+	Typ ramki - wszystkie odczyty (bajt 0: 0x00):
+	0. XOR wszystkich następnych bajtów (suma kontrolna) (unsigned 8b)
+	1. Typ ramki - 0x00 wszystkie odczyty (unsigned 8b)
+	2. Aktualna temperatura (unsigned 8b)
+	3. Aktualne ciśnienie - skalowane (unsigned 16b)
+	4. cd^ (JEZELI SIĘ ZMIEŚCI TO NIESKALOWANE)
+	5. Wysokość (unsigned 16b)
+	6. cd^
+	7. Aktualna pozycja long - skalowane (unsigned 16b)
+	8. cd^
+	9. Aktualna pozycja lat - skalowane (unsigned 16b)
+	10. cd^
+	11. Booleany sterujące (unsigned 8b): bit 7 - ..., bit 6 - ...
+	12. {POMIARY PO KOLEI}
+	.
+	.
+	.
+	13. Roll (signed 8b)
+	14. Pitch (signed 8b)
+	
+
+	Typ ramki - sama pozycja (bajt 0: 0x01):
+	0. XOR wszystkich następnych bajtów (suma kontrolna) (unsigned 8b)
+	1. Typ ramki - 0x01 Sama pozycja (unsigned 8b)
+	2. Aktualna pozycja long (unsigned 32b)
+	3. cd^
+	4. cd^
+	5. cd^
+	6. Aktualna pozycja lat (unsigned 32b)
+	7. cd^
+	8. cd^
+	9. cd^
+
+	Typ ramki - najważniejsze odczyty (bajt 0: 0x02):
+	0. XOR wszystkich następnych bajtów (suma kontrolna) (unsigned 8b)
+	1. Typ ramki - 0x02 najważniejsze odczyty (unsigned 8b)
+	2. Aktualne ciśnienie -skalowane (unsigned 16b)
+	3. cd^
+	4. Aktualna temperatura (unsigned 8b)
+	
+	
+	
+	Przykład:
+	
+	0. XOR wszystkich następnych bajtów (suma kontrolna) (unsigned 8b)
+	
+	10. Aktualna siła ścisku szczęk (unsigned 8b)
+	
+    11. Autokalibracja (unsigned 8b): bit 7 - kalibruj Czł1, bit 6 - kalibruj Czł2, bit 5 - kalibruj Czł3, bit 0 - koniec autokalibracji
+	
+	8. Aktualna pozycja członu 3 manipulatora (unsigned 16b)
+    9. cd^
