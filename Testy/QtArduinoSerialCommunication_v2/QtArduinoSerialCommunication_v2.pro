@@ -26,12 +26,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         okno.cpp \
-    PacketSerial.cpp
+    PacketSerial.cpp \
+    komunikacja.cpp
 
 HEADERS += \
         okno.h \
     PacketSerial.h \
-    COBS.h
+    COBS.h \
+    komunikacja.h
 
 FORMS += \
         okno.ui
