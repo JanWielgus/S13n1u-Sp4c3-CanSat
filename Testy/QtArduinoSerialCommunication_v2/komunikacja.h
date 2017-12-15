@@ -11,9 +11,9 @@ class Komunikacja
 public:
     Komunikacja();
 
-    QSerialPort *arduino; //= new QSerialPort(this); // może z *
-    PacketSerial *pSerial;// = new PacketSerial; // może z *
-    uint8_t *buforT;// = new uint8_t[pSerial->MAX_SEND_SIZE];
+    QSerialPort *arduino;
+    PacketSerial *pSerial;
+    uint8_t *buforT;
 
     static const quint16 arduino_uno_vendor_id = 6790;
     static const quint16 arduino_uno_product_id = 29987;

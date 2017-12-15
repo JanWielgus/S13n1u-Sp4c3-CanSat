@@ -16,14 +16,16 @@ void PacketSerial::setArduinoSerial(QSerialPort *sserial)
 
 void PacketSerial::update()
 {
-    while (arduinoSerial->bytesAvailable() > 0)
+    int bytes_waiting;
+    while ((bytes_waiting = arduinoSerial->bytesAvailable()) > 0)
     {
         QByteArray dataRead;
         dataRead.resize(MAX_SEND_SIZE);
 
         dataRead = arduinoSerial->read(MAX_SEND_SIZE);
 
-        for (unsigned int q=0; q < MAX_SEND_SIZE; q++)
+        int maxNum = (bytes_waiting<=MAX_SEND_SIZE?bytes_waiting:MAX_SEND_SIZE);
+        for (int q=0; q < maxNum; q++)
         {
             uint8_t dataByte = dataRead[q];
 

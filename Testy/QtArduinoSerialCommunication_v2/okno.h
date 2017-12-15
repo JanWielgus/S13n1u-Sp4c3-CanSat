@@ -23,6 +23,7 @@ public:
 
 private slots:
     void readSerial();
+    void on_testSendButton_clicked();
 };
 
 #endif // OKNO_H

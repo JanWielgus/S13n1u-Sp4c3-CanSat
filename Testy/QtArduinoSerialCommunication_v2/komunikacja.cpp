@@ -49,6 +49,8 @@ void Komunikacja::odbierzPriv(const uint8_t *bufferR, size_t PacketSize)
         // itd...
         // Jeżeli mniej niż ....size to zmniejszyć wielkość ....size
         il_odebranych = 5; // ustawić tyle ile odebrano (do obsługi protezy)
+        qDebug() << "Rozkodowano ramkę mumer 1 od arduino :)" << bufferR[4];
+
     }
 
     else if (bufferR[1] == KOMUN_RAMKA_ARDU_2_TYPE && PacketSize == KOMUN_RAMKA_ARDU_2_SIZE && sprawdzSumeKontr(bufferR, PacketSize))
@@ -68,7 +70,9 @@ void Komunikacja::wyslij(uint8_t typRamki)
 
     if (typRamki == KOMUN_RAMKA_PC_1_TYPE)
     {
-        // buforT[2] = costam;
+        buforT[2] = 5;
+        buforT[3] = 77;
+        buforT[4] = 78;
         // itd...
         // pamiętać o wielkości!!!
 

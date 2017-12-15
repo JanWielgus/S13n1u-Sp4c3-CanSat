@@ -1,0 +1,1 @@
+TestKomunikacjiArduinoPC1 - program na arduino do odbioru sygna³u z komputera (QtArduinoSerialCommunication_v2)

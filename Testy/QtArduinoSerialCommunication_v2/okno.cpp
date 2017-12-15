@@ -95,6 +95,13 @@ okno::~okno()
 void okno::readSerial()
 {
     komun.odbierz();
+    qDebug() << "Odebrano jakies dane\n";
 }
 
 
+
+void okno::on_testSendButton_clicked()
+{
+    komun.wyslij(komun.KOMUN_RAMKA_PC_1_TYPE);
+    qDebug() << "Wyslano ramke testowa\n";
+}
