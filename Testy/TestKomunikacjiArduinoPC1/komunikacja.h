@@ -46,6 +46,7 @@ class KomunikacjaClass
 	void init();
 	
 	uint8_t testowa1=0;
+	uint16_t counter1=0;
 	
 	void wyslij(uint8_t typRamki);
 	void odbierz();

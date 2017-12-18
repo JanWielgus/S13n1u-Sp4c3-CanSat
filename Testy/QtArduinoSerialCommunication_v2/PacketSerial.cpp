@@ -62,15 +62,18 @@ void PacketSerial::update()
 
 void PacketSerial::send(const uint8_t *buffer, size_t size)
 {
-    //if (buffer == 0 || size == 0) return;
+    if (buffer == 0 || size == 0) return;
 
     uint8_t _encodeBuffer[COBS::getEncodedBufferSize(size)];
 
-    size_t numEncoded = COBS::encode(buffer,
-                                     size,
-                                     _encodeBuffer);
-    arduinoSerial->write((char*)_encodeBuffer, numEncoded);
-    arduinoSerial->write((char*)PacketMarker); // Jeżeli błąd to dodać (char*)  !!!
+    size_t numEncoded = COBS::encode(buffer, size, _encodeBuffer);
+
+    char* _encBuf = reinterpret_cast<char*>(_encodeBuffer); // rzutowanie uint8_t* na char*
+    char* PacMak = reinterpret_cast<char*>(PacketMarker);
+
+    arduinoSerial->write(_encBuf, numEncoded);
+    //arduinoSerial->waitForBytesWritten();
+    arduinoSerial->write(PacMak);
 }
 
 

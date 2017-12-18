@@ -49,7 +49,7 @@ void Komunikacja::odbierzPriv(const uint8_t *bufferR, size_t PacketSize)
         // itd...
         // Jeżeli mniej niż ....size to zmniejszyć wielkość ....size
         il_odebranych = 5; // ustawić tyle ile odebrano (do obsługi protezy)
-        qDebug() << "Rozkodowano ramkę mumer 1 od arduino :)" << bufferR[4];
+        qDebug() << "Rozkodowano ramkę mumer 1 od arduino :)" << bufferR[4] << " " << bufferR[3];
 
     }
 

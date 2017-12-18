@@ -7,7 +7,6 @@
 void _protOdbierz(const uint8_t* buffer, size_t size)
 {
 	komun.odbierzPriv(buffer, size);
-	//komun.wyslij(KOMUN_RAMKA_ARDU_1_TYPE);
 }
 
 
@@ -33,6 +32,7 @@ void KomunikacjaClass::odbierzPriv(const uint8_t* bufferR, size_t PacketSize)
 	if (bufferR[1] == KOMUN_RAMKA_PC_1_TYPE && PacketSize == KOMUN_RAMKA_PC_1_SIZE && sprawdzSumeKontr(bufferR, PacketSize))
 	{
 		// odbieranie kolejnych zmeinnych
+		testowa1 = buforT[4];
 	}
 	
 	else if (bufferR[1] == KOMUN_RAMKA_PC_2_TYPE && PacketSize == KOMUN_RAMKA_PC_2_SIZE && sprawdzSumeKontr(bufferR, PacketSize))
@@ -52,7 +52,7 @@ void KomunikacjaClass::wyslij(uint8_t typRamki)
 		// przypisanie zmiennych do tablicy buforT
 		buforT[2] = 5;
 		buforT[3] = 4;
-		buforT[4] = 78;
+		buforT[4] = 102;
 		
 		buforT[0] = liczSumeKontr(buforT, KOMUN_RAMKA_ARDU_1_SIZE);
 		pSerial.send(buforT, KOMUN_RAMKA_ARDU_1_SIZE);

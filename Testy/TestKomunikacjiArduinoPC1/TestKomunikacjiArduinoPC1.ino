@@ -2,10 +2,10 @@
 #include <LiquidCrystal_I2C.h>
 #include "komunikacja.h"
 
+LiquidCrystal_I2C lcd(0x3F, 16, 2);
+
 #define COLS 16
 #define ROWS 2
-
-LiquidCrystal_I2C lcd(0x3F, 16, 2);
 
 
 void napisz(String napis, int rowy=0, int coly=0)
@@ -24,21 +24,25 @@ void napisz(String napis, int rowy=0, int coly=0)
 
 void setup()
 {
-	lcd.init();
 	komun.init();
 	//pinMode(LED_BUILTIN, OUTPUT);
+	lcd.init();
 	lcd.backlight();
-	delay(500);
-	lcd.clear();
-	delay(5000);
 }
 
 void loop()
 {
-	komun.wyslij(KOMUN_RAMKA_ARDU_1_TYPE);
-	delay(1500);
-	lcd.setCursor(0,0);
-	lcd.print(komun.testowa1);
+	if (Serial.available())
+	{
+		while (Serial.available() > 0)
+			napisz(String(Serial.read()));
+		delay(300);
+		komun.wyslij(KOMUN_RAMKA_ARDU_1_TYPE);
+	}
+	//komun.wyslij(KOMUN_RAMKA_ARDU_1_TYPE);
+	//komun.odbierz();
+	//delay(5000);
+	//napisz(String(komun.counter1));
 	napisz("Czeka...",1);
 }
 
