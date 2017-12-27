@@ -16,14 +16,16 @@ void PacketSerial::setArduinoSerial(QSerialPort *sserial)
 
 void PacketSerial::update()
 {
-    while (arduinoSerial->bytesAvailable() > 0)
+    int bytes_waiting;
+    while ((bytes_waiting = arduinoSerial->bytesAvailable()) > 0)
     {
         QByteArray dataRead;
         dataRead.resize(MAX_SEND_SIZE);
 
         dataRead = arduinoSerial->read(MAX_SEND_SIZE);
 
-        for (unsigned int q=0; q < MAX_SEND_SIZE; q++)
+        int maxNum = (bytes_waiting<=MAX_SEND_SIZE?bytes_waiting:MAX_SEND_SIZE);
+        for (int q=0; q < maxNum; q++)
         {
             uint8_t dataByte = dataRead[q];
 
@@ -60,15 +62,17 @@ void PacketSerial::update()
 
 void PacketSerial::send(const uint8_t *buffer, size_t size)
 {
-    //if (buffer == 0 || size == 0) return;
+    if (buffer == 0 || size == 0) return;
 
-    uint8_t _encodeBuffer[COBS::getEncodedBufferSize(size)];
+    int temp = COBS::getEncodedBufferSize(size)+1; // powiększona bo jeszcze zawiera packet maker
+    uint8_t _encodeBuffer[temp];
 
-    size_t numEncoded = COBS::encode(buffer,
-                                     size,
-                                     _encodeBuffer);
-    arduinoSerial->write((char*)_encodeBuffer, numEncoded);
-    arduinoSerial->write((char*)PacketMarker); // Jeżeli błąd to dodać (char*)  !!!
+    size_t numEncoded = COBS::encode(buffer, size, _encodeBuffer);
+
+    _encodeBuffer[temp-1] = 0; // zamiast packet maker (który jest zerem) <- dodanie na koniec tablicy 0
+    char* _encBuf = reinterpret_cast<char*>(_encodeBuffer); // rzutowanie uint8_t* na char*
+
+    arduinoSerial->write(_encBuf, numEncoded+1); // +1 bo jeszcze packet maker
 }
 
 

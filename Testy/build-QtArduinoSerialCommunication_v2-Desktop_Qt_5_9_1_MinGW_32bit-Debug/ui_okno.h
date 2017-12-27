@@ -16,6 +16,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
@@ -25,9 +26,10 @@ QT_BEGIN_NAMESPACE
 class Ui_okno
 {
 public:
+    QWidget *centralWidget;
+    QPushButton *testSendButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
-    QWidget *centralWidget;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *okno)
@@ -35,15 +37,19 @@ public:
         if (okno->objectName().isEmpty())
             okno->setObjectName(QStringLiteral("okno"));
         okno->resize(400, 300);
+        centralWidget = new QWidget(okno);
+        centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        testSendButton = new QPushButton(centralWidget);
+        testSendButton->setObjectName(QStringLiteral("testSendButton"));
+        testSendButton->setGeometry(QRect(240, 140, 93, 28));
+        okno->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(okno);
         menuBar->setObjectName(QStringLiteral("menuBar"));
+        menuBar->setGeometry(QRect(0, 0, 400, 26));
         okno->setMenuBar(menuBar);
         mainToolBar = new QToolBar(okno);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        okno->addToolBar(mainToolBar);
-        centralWidget = new QWidget(okno);
-        centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        okno->setCentralWidget(centralWidget);
+        okno->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(okno);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         okno->setStatusBar(statusBar);
@@ -56,6 +62,7 @@ public:
     void retranslateUi(QMainWindow *okno)
     {
         okno->setWindowTitle(QApplication::translate("okno", "okno", Q_NULLPTR));
+        testSendButton->setText(QApplication::translate("okno", "TestSend", Q_NULLPTR));
     } // retranslateUi
 
 };
