@@ -64,16 +64,15 @@ void PacketSerial::send(const uint8_t *buffer, size_t size)
 {
     if (buffer == 0 || size == 0) return;
 
-    uint8_t _encodeBuffer[COBS::getEncodedBufferSize(size)];
+    int temp = COBS::getEncodedBufferSize(size)+1; // powiększona bo jeszcze zawiera packet maker
+    uint8_t _encodeBuffer[temp];
 
     size_t numEncoded = COBS::encode(buffer, size, _encodeBuffer);
 
+    _encodeBuffer[temp-1] = 0; // zamiast packet maker (który jest zerem) <- dodanie na koniec tablicy 0
     char* _encBuf = reinterpret_cast<char*>(_encodeBuffer); // rzutowanie uint8_t* na char*
-    char* PacMak = reinterpret_cast<char*>(PacketMarker);
 
-    arduinoSerial->write(_encBuf, numEncoded);
-    //arduinoSerial->waitForBytesWritten();
-    arduinoSerial->write(PacMak);
+    arduinoSerial->write(_encBuf, numEncoded+1); // +1 bo jeszcze packet maker
 }
 
 
