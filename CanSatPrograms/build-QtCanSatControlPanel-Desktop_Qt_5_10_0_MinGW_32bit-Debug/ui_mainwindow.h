@@ -25,12 +25,14 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
+#include <QtWidgets/QTimeEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -47,7 +49,7 @@ public:
     QGroupBox *groupBox_5;
     QLCDNumber *fallingV_lcdNumber;
     QGroupBox *groupBox_8;
-    QSlider *heightSlider;
+    QSlider *altitudeSlider;
     QLabel *label_14;
     QLabel *label_15;
     QLabel *label_16;
@@ -72,13 +74,17 @@ public:
     QLabel *label_5;
     QLabel *label_6;
     QLabel *label_7;
-    QLabel *label_8;
     QLineEdit *humid_lineEdit;
     QLineEdit *ionRad_lineEdit;
     QLineEdit *pm_lineEdit;
     QLineEdit *voltage_lineEdit;
     QLabel *label_13;
     QLineEdit *alt_lineEdit;
+    QLabel *label_8;
+    QLabel *label_24;
+    QLineEdit *ang_speed_lineEdit;
+    QLabel *label_25;
+    QLineEdit *heading_lineEdit;
     QGroupBox *groupBox_4;
     QGroupBox *groupBox_6;
     QCheckBox *CSautoPower_checkBox;
@@ -147,6 +153,11 @@ public:
     QLabel *label_23;
     QCheckBox *failure1_checkBox;
     QCheckBox *failure2_checkBox;
+    QGroupBox *groupBox_11;
+    QWidget *verticalLayoutWidget;
+    QVBoxLayout *verticalLayout_9;
+    QProgressBar *progressBar;
+    QTimeEdit *timeEdit;
     QWidget *tab_2;
     QGroupBox *groupBox;
     QGroupBox *groupBox_2;
@@ -191,18 +202,18 @@ public:
         fallingV_lcdNumber->setProperty("intValue", QVariant(0));
         groupBox_8 = new QGroupBox(groupBox_3);
         groupBox_8->setObjectName(QStringLiteral("groupBox_8"));
-        groupBox_8->setGeometry(QRect(10, 360, 121, 221));
-        heightSlider = new QSlider(groupBox_8);
-        heightSlider->setObjectName(QStringLiteral("heightSlider"));
-        heightSlider->setEnabled(false);
-        heightSlider->setGeometry(QRect(20, 24, 22, 191));
-        heightSlider->setMouseTracking(false);
-        heightSlider->setAutoFillBackground(false);
-        heightSlider->setMaximum(3000);
-        heightSlider->setValue(0);
-        heightSlider->setTracking(true);
-        heightSlider->setOrientation(Qt::Vertical);
-        heightSlider->setInvertedControls(false);
+        groupBox_8->setGeometry(QRect(217, 140, 121, 221));
+        altitudeSlider = new QSlider(groupBox_8);
+        altitudeSlider->setObjectName(QStringLiteral("altitudeSlider"));
+        altitudeSlider->setEnabled(false);
+        altitudeSlider->setGeometry(QRect(20, 24, 22, 191));
+        altitudeSlider->setMouseTracking(false);
+        altitudeSlider->setAutoFillBackground(false);
+        altitudeSlider->setMaximum(3000);
+        altitudeSlider->setValue(0);
+        altitudeSlider->setTracking(true);
+        altitudeSlider->setOrientation(Qt::Vertical);
+        altitudeSlider->setInvertedControls(false);
         label_14 = new QLabel(groupBox_8);
         label_14->setObjectName(QStringLiteral("label_14"));
         label_14->setGeometry(QRect(70, 200, 21, 16));
@@ -245,10 +256,10 @@ public:
         line_6->setFrameShadow(QFrame::Sunken);
         groupBox_9 = new QGroupBox(groupBox_3);
         groupBox_9->setObjectName(QStringLiteral("groupBox_9"));
-        groupBox_9->setGeometry(QRect(10, 50, 191, 301));
+        groupBox_9->setGeometry(QRect(10, 50, 191, 421));
         layoutWidget = new QWidget(groupBox_9);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(4, 19, 181, 271));
+        layoutWidget->setGeometry(QRect(4, 19, 181, 381));
         formLayout_2 = new QFormLayout(layoutWidget);
         formLayout_2->setSpacing(6);
         formLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -324,12 +335,6 @@ public:
 
         formLayout_2->setWidget(7, QFormLayout::LabelRole, label_7);
 
-        label_8 = new QLabel(layoutWidget);
-        label_8->setObjectName(QStringLiteral("label_8"));
-        label_8->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
-
-        formLayout_2->setWidget(8, QFormLayout::LabelRole, label_8);
-
         humid_lineEdit = new QLineEdit(layoutWidget);
         humid_lineEdit->setObjectName(QStringLiteral("humid_lineEdit"));
         humid_lineEdit->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
@@ -360,6 +365,7 @@ public:
 
         label_13 = new QLabel(layoutWidget);
         label_13->setObjectName(QStringLiteral("label_13"));
+        label_13->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
         formLayout_2->setWidget(1, QFormLayout::LabelRole, label_13);
 
@@ -369,6 +375,39 @@ public:
         alt_lineEdit->setReadOnly(true);
 
         formLayout_2->setWidget(1, QFormLayout::FieldRole, alt_lineEdit);
+
+        label_8 = new QLabel(layoutWidget);
+        label_8->setObjectName(QStringLiteral("label_8"));
+        label_8->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+
+        formLayout_2->setWidget(8, QFormLayout::LabelRole, label_8);
+
+        label_24 = new QLabel(layoutWidget);
+        label_24->setObjectName(QStringLiteral("label_24"));
+        label_24->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+
+        formLayout_2->setWidget(10, QFormLayout::LabelRole, label_24);
+
+        ang_speed_lineEdit = new QLineEdit(layoutWidget);
+        ang_speed_lineEdit->setObjectName(QStringLiteral("ang_speed_lineEdit"));
+        ang_speed_lineEdit->setLayoutDirection(Qt::LeftToRight);
+        ang_speed_lineEdit->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        ang_speed_lineEdit->setReadOnly(true);
+
+        formLayout_2->setWidget(10, QFormLayout::FieldRole, ang_speed_lineEdit);
+
+        label_25 = new QLabel(layoutWidget);
+        label_25->setObjectName(QStringLiteral("label_25"));
+        label_25->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+
+        formLayout_2->setWidget(9, QFormLayout::LabelRole, label_25);
+
+        heading_lineEdit = new QLineEdit(layoutWidget);
+        heading_lineEdit->setObjectName(QStringLiteral("heading_lineEdit"));
+        heading_lineEdit->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        heading_lineEdit->setReadOnly(true);
+
+        formLayout_2->setWidget(9, QFormLayout::FieldRole, heading_lineEdit);
 
 
         gridLayout_3->addWidget(groupBox_3, 0, 0, 1, 1);
@@ -380,10 +419,10 @@ public:
         groupBox_6->setGeometry(QRect(10, 30, 421, 251));
         CSautoPower_checkBox = new QCheckBox(groupBox_6);
         CSautoPower_checkBox->setObjectName(QStringLiteral("CSautoPower_checkBox"));
-        CSautoPower_checkBox->setGeometry(QRect(12, 140, 71, 20));
+        CSautoPower_checkBox->setGeometry(QRect(12, 154, 71, 20));
         layoutWidget1 = new QWidget(groupBox_6);
         layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(90, 180, 111, 51));
+        layoutWidget1->setGeometry(QRect(12, 190, 111, 51));
         verticalLayout_3 = new QVBoxLayout(layoutWidget1);
         verticalLayout_3->setSpacing(6);
         verticalLayout_3->setContentsMargins(11, 11, 11, 11);
@@ -402,7 +441,7 @@ public:
 
         layoutWidget2 = new QWidget(groupBox_6);
         layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
-        layoutWidget2->setGeometry(QRect(10, 44, 103, 91));
+        layoutWidget2->setGeometry(QRect(10, 44, 103, 105));
         horizontalLayout_2 = new QHBoxLayout(layoutWidget2);
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -481,6 +520,7 @@ public:
 
         PPS_lineEdit = new QLineEdit(layoutWidget3);
         PPS_lineEdit->setObjectName(QStringLiteral("PPS_lineEdit"));
+        PPS_lineEdit->setLayoutDirection(Qt::LeftToRight);
         PPS_lineEdit->setReadOnly(true);
 
         formLayout_4->setWidget(0, QFormLayout::FieldRole, PPS_lineEdit);
@@ -509,7 +549,7 @@ public:
 
         layoutWidget_2 = new QWidget(groupBox_6);
         layoutWidget_2->setObjectName(QStringLiteral("layoutWidget_2"));
-        layoutWidget_2->setGeometry(QRect(116, 44, 99, 91));
+        layoutWidget_2->setGeometry(QRect(116, 44, 99, 105));
         horizontalLayout_3 = new QHBoxLayout(layoutWidget_2);
         horizontalLayout_3->setSpacing(6);
         horizontalLayout_3->setContentsMargins(11, 11, 11, 11);
@@ -586,7 +626,7 @@ public:
         label_18->setGeometry(QRect(120, 20, 91, 16));
         GSautoPower_checkBox = new QCheckBox(groupBox_6);
         GSautoPower_checkBox->setObjectName(QStringLiteral("GSautoPower_checkBox"));
-        GSautoPower_checkBox->setGeometry(QRect(119, 140, 71, 20));
+        GSautoPower_checkBox->setGeometry(QRect(119, 154, 71, 20));
         line_9 = new QFrame(groupBox_6);
         line_9->setObjectName(QStringLiteral("line_9"));
         line_9->setGeometry(QRect(204, 26, 20, 111));
@@ -594,15 +634,15 @@ public:
         line_9->setFrameShadow(QFrame::Sunken);
         line_10 = new QFrame(groupBox_6);
         line_10->setObjectName(QStringLiteral("line_10"));
-        line_10->setGeometry(QRect(9, 158, 401, 20));
+        line_10->setGeometry(QRect(9, 172, 401, 20));
         line_10->setFrameShape(QFrame::HLine);
         line_10->setFrameShadow(QFrame::Sunken);
         groupBox_7 = new QGroupBox(groupBox_4);
         groupBox_7->setObjectName(QStringLiteral("groupBox_7"));
-        groupBox_7->setGeometry(QRect(10, 290, 211, 101));
+        groupBox_7->setGeometry(QRect(10, 290, 191, 101));
         horizontalLayoutWidget_2 = new QWidget(groupBox_7);
         horizontalLayoutWidget_2->setObjectName(QStringLiteral("horizontalLayoutWidget_2"));
-        horizontalLayoutWidget_2->setGeometry(QRect(20, 20, 181, 71));
+        horizontalLayoutWidget_2->setGeometry(QRect(7, 18, 181, 78));
         horizontalLayout_4 = new QHBoxLayout(horizontalLayoutWidget_2);
         horizontalLayout_4->setSpacing(6);
         horizontalLayout_4->setContentsMargins(11, 11, 11, 11);
@@ -656,10 +696,10 @@ public:
 
         groupBox_10 = new QGroupBox(groupBox_4);
         groupBox_10->setObjectName(QStringLiteral("groupBox_10"));
-        groupBox_10->setGeometry(QRect(250, 290, 181, 201));
+        groupBox_10->setGeometry(QRect(250, 290, 181, 251));
         horizontalLayoutWidget_3 = new QWidget(groupBox_10);
         horizontalLayoutWidget_3->setObjectName(QStringLiteral("horizontalLayoutWidget_3"));
-        horizontalLayoutWidget_3->setGeometry(QRect(10, 20, 161, 171));
+        horizontalLayoutWidget_3->setGeometry(QRect(10, 20, 161, 215));
         horizontalLayout_5 = new QHBoxLayout(horizontalLayoutWidget_3);
         horizontalLayout_5->setSpacing(6);
         horizontalLayout_5->setContentsMargins(11, 11, 11, 11);
@@ -726,6 +766,34 @@ public:
 
         horizontalLayout_5->addLayout(verticalLayout);
 
+        groupBox_11 = new QGroupBox(groupBox_4);
+        groupBox_11->setObjectName(QStringLiteral("groupBox_11"));
+        groupBox_11->setEnabled(true);
+        groupBox_11->setGeometry(QRect(10, 398, 141, 80));
+        verticalLayoutWidget = new QWidget(groupBox_11);
+        verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
+        verticalLayoutWidget->setGeometry(QRect(5, 19, 131, 55));
+        verticalLayout_9 = new QVBoxLayout(verticalLayoutWidget);
+        verticalLayout_9->setSpacing(6);
+        verticalLayout_9->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
+        verticalLayout_9->setContentsMargins(0, 0, 0, 0);
+        progressBar = new QProgressBar(verticalLayoutWidget);
+        progressBar->setObjectName(QStringLiteral("progressBar"));
+        progressBar->setEnabled(true);
+        progressBar->setValue(0);
+
+        verticalLayout_9->addWidget(progressBar);
+
+        timeEdit = new QTimeEdit(verticalLayoutWidget);
+        timeEdit->setObjectName(QStringLiteral("timeEdit"));
+        timeEdit->setEnabled(true);
+        timeEdit->setAlignment(Qt::AlignCenter);
+        timeEdit->setReadOnly(true);
+        timeEdit->setButtonSymbols(QAbstractSpinBox::NoButtons);
+
+        verticalLayout_9->addWidget(timeEdit);
+
 
         gridLayout_3->addWidget(groupBox_4, 0, 1, 1, 1);
 
@@ -791,10 +859,10 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Sieniu_34 CanSat control panel", nullptr));
         groupBox_3->setTitle(QApplication::translate("MainWindow", "Measurements", nullptr));
         groupBox_5->setTitle(QApplication::translate("MainWindow", "Falling velocity [m/s]", nullptr));
-        groupBox_8->setTitle(QApplication::translate("MainWindow", "Estimated height", nullptr));
+        groupBox_8->setTitle(QApplication::translate("MainWindow", "CanSat altitude", nullptr));
         label_14->setText(QApplication::translate("MainWindow", "0m", nullptr));
         label_15->setText(QApplication::translate("MainWindow", "3000m", nullptr));
         label_16->setText(QApplication::translate("MainWindow", "2000m", nullptr));
@@ -809,16 +877,20 @@ public:
         co2_lineEdit->setText(QApplication::translate("MainWindow", "0 PPM", nullptr));
         label_4->setText(QApplication::translate("MainWindow", "tVOC:", nullptr));
         tvoc_lineEdit->setText(QApplication::translate("MainWindow", "0 PPB", nullptr));
-        label_5->setText(QApplication::translate("MainWindow", "Real humidity:", nullptr));
+        label_5->setText(QApplication::translate("MainWindow", "Relative humidity:", nullptr));
         label_6->setText(QApplication::translate("MainWindow", "Ionizing radiation:", nullptr));
         label_7->setText(QApplication::translate("MainWindow", "PM 2.5:", nullptr));
-        label_8->setText(QApplication::translate("MainWindow", "Voltage:", nullptr));
         humid_lineEdit->setText(QApplication::translate("MainWindow", "0 %", nullptr));
         ionRad_lineEdit->setText(QApplication::translate("MainWindow", "0 msv/h", nullptr));
         pm_lineEdit->setText(QApplication::translate("MainWindow", "0 \316\274m", nullptr));
         voltage_lineEdit->setText(QApplication::translate("MainWindow", "0 V", nullptr));
         label_13->setText(QApplication::translate("MainWindow", "Altitude:", nullptr));
         alt_lineEdit->setText(QApplication::translate("MainWindow", "0 m", nullptr));
+        label_8->setText(QApplication::translate("MainWindow", "Voltage:", nullptr));
+        label_24->setText(QApplication::translate("MainWindow", "Angular speed:", nullptr));
+        ang_speed_lineEdit->setText(QApplication::translate("MainWindow", "0 \302\260/s", nullptr));
+        label_25->setText(QApplication::translate("MainWindow", "Heading:", nullptr));
+        heading_lineEdit->setText(QApplication::translate("MainWindow", "0 \302\260", nullptr));
         groupBox_4->setTitle(QApplication::translate("MainWindow", "Live settings", nullptr));
         groupBox_6->setTitle(QApplication::translate("MainWindow", "Communication", nullptr));
         CSautoPower_checkBox->setText(QApplication::translate("MainWindow", "CS APC", nullptr));
@@ -864,6 +936,7 @@ public:
         label_23->setText(QApplication::translate("MainWindow", "Possible failures:", nullptr));
         failure1_checkBox->setText(QApplication::translate("MainWindow", "Too high falling speed", nullptr));
         failure2_checkBox->setText(QApplication::translate("MainWindow", "Too low falling speed", nullptr));
+        groupBox_11->setTitle(QApplication::translate("MainWindow", "Estimated touchdown", nullptr));
         Tabs->setTabText(Tabs->indexOf(tab), QApplication::translate("MainWindow", "General", nullptr));
         groupBox->setTitle(QApplication::translate("MainWindow", "Communication", nullptr));
         groupBox_2->setTitle(QApplication::translate("MainWindow", "GroupBox", nullptr));
