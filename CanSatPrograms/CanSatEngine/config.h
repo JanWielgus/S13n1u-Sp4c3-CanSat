@@ -25,7 +25,10 @@
 // ===== CONSTANS ===== (eg. pins)
 
 #define MAX_LOST_PACKETS 2                // If more -> signal lost mode
-#define MPU_INTERRUPT_PIN 20      // All interrupt: 2, 3, 18, 19, 20, 21
+#define MPU_INTERRUPT_PIN 20        // All interrupt: 2, 3, 18, 19, 20, 21
+#define ION_RAD_PIN A0              // Ionizing radiation analog pin
+#define GPS_RX_PIN 5                //
+#define GPS_TX_PIN 4                //
 
 
 

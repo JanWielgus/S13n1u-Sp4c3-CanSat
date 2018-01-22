@@ -6,41 +6,80 @@
 
 SensorsClass sensor;
 
+void dmpDataReady()
+{
+	sensor.mpuInterrupt = true;
+}
+
+
 
 void SensorsClass::init()
 {
 	Wire.begin();
 	Wire.setClock(400000L);
 	
-	mpu.initialize();
-	pinMode(MPU_INTERRUPT_PIN, INPUT);
+	// ====== MPU6050 DMP ======
+		mpu.initialize();
+		pinMode(MPU_INTERRUPT_PIN, INPUT);
 	
-	devStatus = mpu.dmpInitialize();
+		devStatus = mpu.dmpInitialize();
 	
-	// supply your own gyro offsets here, scaled for min sensitivity
-	mpu.setXGyroOffset(220);
-	mpu.setYGyroOffset(76);
-	mpu.setZGyroOffset(-85);
-	mpu.setZAccelOffset(1788); // 1688 factory default for my test chip
+		// supply your own gyro offsets here, scaled for min sensitivity
+		mpu.setXGyroOffset(220);
+		mpu.setYGyroOffset(76);
+		mpu.setZGyroOffset(-85);
+		mpu.setZAccelOffset(1788); // 1688 factory default for my test chip
 	
-	if (devStatus == 0)
-	{
-		mpu.setDMPEnabled(true);
+		if (devStatus == 0)
+		{
+			mpu.setDMPEnabled(true);
 		
-		attachInterrupt(digitalPinToInterrupt(INTERRUPT_PIN), dmpDataReady, RISING);
-		mpuIntStatus = mpu.getIntStatus();
+			attachInterrupt(digitalPinToInterrupt(MPU_INTERRUPT_PIN), dmpDataReady, RISING);
+			mpuIntStatus = mpu.getIntStatus();
 		
-		dmpReady = true;
+			dmpReady = true;
 		
-		packetSize = mpu.dmpGetFIFOPacketSize();
-	}
-	else
-	{
-		// ERROR!
-		// 1 = initial memory load failed
-		// 2 = DMP configuration updates failed
-		// (if it's going to break, usually the code will be 1)
-	}
+			packetSize = mpu.dmpGetFIFOPacketSize();
+		}
+		else
+		{
+			// ERROR!
+			// 1 = initial memory load failed
+			// 2 = DMP configuration updates failed
+			// (if it's going to break, usually the code will be 1)
+		}
+	
+	// ====== MPU6050 ======
+	
+	
+	
+	// ====== CCS811 ======
+	
+	
+	
+	// ====== PMS5003 ======
+	
+	
+	
+	// ====== HTU21 ======
+	
+	
+	
+	// ====== HMC5883L ======
+	
+	
+	
+	// ====== MS5611 ======
+	
+	
+	
+	// ====== UBLOX NEO6M ======
+	
+	
+	
+	// ====== OpenLog ======
+	
+	
 }
 
 
@@ -102,12 +141,26 @@ void SensorsClass::readAngles()
 		mpu.dmpGetGravity(&gravity, &q);
 		mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
 		
-		angle.pitch = (ypr[1]*(-100))-PITCH_OFFSET;
-		angle.roll  = (ypr[2]*100)-ROLL_OFFSET;
-		angle.yaw   = ypr[3];
+		DMPang.pitch = (ypr[1]*(-100))-PITCH_OFFSET;
+		DMPang.roll  = (ypr[2]*100)-ROLL_OFFSET;
+		DMPang.yaw   = ypr[3];
 		
 		//////////////////////////////////////////////////////////////////////////
 	}
+}
+
+
+
+uint16_t SensorsClass::compressPressure(float pres)
+{
+	// compression code
+}
+
+
+
+uint8_t SensorsClass::compressHeading(float head)
+{
+	// compression code
 }
 
 

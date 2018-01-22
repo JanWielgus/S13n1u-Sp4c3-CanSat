@@ -5,19 +5,19 @@
 	Main program of Sieniu_34 CanSat.
 */
 
-#include "Supervisor.h"
 #include "Communication.h"
 #include "Sensors.h"
+#include "GoodTasker.h"
 
 //HighTask co 50ms	 (max. 10 funkcji)
 //MidTask co 200ms	 (max. 10 funkcji)
 //LowsTask co 2000ms (max. 4 funkcje)
 
 
+
 void setup()
 {
 	Tasker.init();
-	superv.init();
 	com.init();
 	sensor.init();
 	
@@ -25,14 +25,14 @@ void setup()
 		Serial.begin(9600);
 	#endif
 	
-	Tasker.dodajHighTask(recieve);
-	Tasker.dodajHighTask(send);
-	Tasker.dodajHighTask(getSensorsValues);
+	Tasker.dodajMidTask(recieve);
+	Tasker.dodajMidTask(send);
+	Tasker.dodajMidTask(getSensorsValues);
 }
 
 void loop()
 {
-	// Kod wykonywany w tle poza zadaniami
+	// Code run in background
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -40,13 +40,13 @@ void loop()
 
 void recieve()
 {
-	// kod odbierania
+	// Recieving part
 }
 
 
 void send()
 {
-	// kod wysylania
+	// Sending part
 }
 
 

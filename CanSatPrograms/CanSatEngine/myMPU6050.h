@@ -656,8 +656,8 @@ class MyMPU6050Class
 {
  public:
 	void init();
-		MPU6050();
-        MPU6050(uint8_t address);
+		MyMPU6050Class();
+        MyMPU6050Class(uint8_t address);
 
         void initialize();
         bool testConnection();

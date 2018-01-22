@@ -28,15 +28,33 @@ class SensorsClass
 	void init();
 	void readAngles(); // roll, pitch, yaw
 	
+	// to send, to save transmitted data
+	uint16_t compressPressure(float pres);
+	uint8_t compressHeading(float head);
+	
 	
 // ===== VARIABLES =====
 	
-  struct ypr_angles
-  {
-	  double pitch;
-	  double roll;
-	  float  yaw;
-  }angle;
+	struct //ypr_angles
+	{
+		double pitch;
+		double roll;
+		float  yaw;
+	}DMPang;
+	
+	float pressure;
+	uint16_t pressureComp;         // Compressed version, to send
+	uint8_t temperature;
+	uint8_t carbDiOx;              // CO2
+	uint8_t tVOC;
+	uint8_t humid;
+	uint8_t ionRadiation;          // Ionizing radiation
+	uint8_t pm25parts;             // PM2.5
+	uint8_t voltage;
+	float heading;
+	uint8_t headingComp;           // Compressed version, to send
+  
+	
  
  
  
