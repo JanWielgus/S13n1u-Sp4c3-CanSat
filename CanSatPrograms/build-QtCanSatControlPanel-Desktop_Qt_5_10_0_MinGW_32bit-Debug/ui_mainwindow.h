@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
@@ -85,6 +86,7 @@ public:
     QLineEdit *ang_speed_lineEdit;
     QLabel *label_25;
     QLineEdit *heading_lineEdit;
+    QPushButton *chartsShow_pushButton;
     QGroupBox *groupBox_4;
     QGroupBox *groupBox_6;
     QCheckBox *CSautoPower_checkBox;
@@ -161,13 +163,22 @@ public:
     QWidget *tab_2;
     QGroupBox *groupBox;
     QGroupBox *groupBox_2;
+    QComboBox *listOfDevicesGS_comboBox;
+    QLabel *label_26;
+    QPushButton *searchGS_pushButton;
+    QPushButton *connectGS_pushButton;
+    QLabel *gs_arduino_state_label;
+    QPushButton *endConnectGS_pushButton;
+    QWidget *layoutWidget4;
+    QFormLayout *formLayout;
+    QLabel *label_27;
+    QLabel *connectionStateGS_label;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayout;
     QLabel *label_9;
     QLabel *label_10;
     QFrame *line;
     QSpacerItem *horizontalSpacer;
-    QPushButton *chartsShow_pushButton;
     QMenuBar *menuBar;
     QStatusBar *statusBar;
 
@@ -180,7 +191,7 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         Tabs = new QTabWidget(centralWidget);
         Tabs->setObjectName(QStringLiteral("Tabs"));
-        Tabs->setGeometry(QRect(7, 43, 931, 651));
+        Tabs->setGeometry(QRect(7, 43, 931, 871));
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
         gridLayout_3 = new QGridLayout(tab);
@@ -409,6 +420,9 @@ public:
 
         formLayout_2->setWidget(9, QFormLayout::FieldRole, heading_lineEdit);
 
+        chartsShow_pushButton = new QPushButton(groupBox_3);
+        chartsShow_pushButton->setObjectName(QStringLiteral("chartsShow_pushButton"));
+        chartsShow_pushButton->setGeometry(QRect(18, 490, 411, 51));
 
         gridLayout_3->addWidget(groupBox_3, 0, 0, 1, 1);
 
@@ -802,10 +816,46 @@ public:
         tab_2->setObjectName(QStringLiteral("tab_2"));
         groupBox = new QGroupBox(tab_2);
         groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setGeometry(QRect(10, 10, 321, 261));
+        groupBox->setGeometry(QRect(10, 10, 291, 101));
         groupBox_2 = new QGroupBox(tab_2);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
-        groupBox_2->setGeometry(QRect(420, 170, 120, 80));
+        groupBox_2->setGeometry(QRect(10, 120, 391, 121));
+        listOfDevicesGS_comboBox = new QComboBox(groupBox_2);
+        listOfDevicesGS_comboBox->setObjectName(QStringLiteral("listOfDevicesGS_comboBox"));
+        listOfDevicesGS_comboBox->setGeometry(QRect(100, 25, 201, 22));
+        label_26 = new QLabel(groupBox_2);
+        label_26->setObjectName(QStringLiteral("label_26"));
+        label_26->setGeometry(QRect(8, 28, 91, 16));
+        searchGS_pushButton = new QPushButton(groupBox_2);
+        searchGS_pushButton->setObjectName(QStringLiteral("searchGS_pushButton"));
+        searchGS_pushButton->setGeometry(QRect(104, 56, 93, 28));
+        connectGS_pushButton = new QPushButton(groupBox_2);
+        connectGS_pushButton->setObjectName(QStringLiteral("connectGS_pushButton"));
+        connectGS_pushButton->setGeometry(QRect(6, 56, 93, 28));
+        gs_arduino_state_label = new QLabel(groupBox_2);
+        gs_arduino_state_label->setObjectName(QStringLiteral("gs_arduino_state_label"));
+        gs_arduino_state_label->setGeometry(QRect(309, 28, 61, 16));
+        endConnectGS_pushButton = new QPushButton(groupBox_2);
+        endConnectGS_pushButton->setObjectName(QStringLiteral("endConnectGS_pushButton"));
+        endConnectGS_pushButton->setGeometry(QRect(201, 56, 101, 28));
+        layoutWidget4 = new QWidget(groupBox_2);
+        layoutWidget4->setObjectName(QStringLiteral("layoutWidget4"));
+        layoutWidget4->setGeometry(QRect(10, 90, 151, 18));
+        formLayout = new QFormLayout(layoutWidget4);
+        formLayout->setSpacing(6);
+        formLayout->setContentsMargins(11, 11, 11, 11);
+        formLayout->setObjectName(QStringLiteral("formLayout"));
+        formLayout->setContentsMargins(0, 0, 0, 0);
+        label_27 = new QLabel(layoutWidget4);
+        label_27->setObjectName(QStringLiteral("label_27"));
+
+        formLayout->setWidget(0, QFormLayout::LabelRole, label_27);
+
+        connectionStateGS_label = new QLabel(layoutWidget4);
+        connectionStateGS_label->setObjectName(QStringLiteral("connectionStateGS_label"));
+
+        formLayout->setWidget(0, QFormLayout::FieldRole, connectionStateGS_label);
+
         Tabs->addTab(tab_2, QString());
         horizontalLayoutWidget = new QWidget(centralWidget);
         horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
@@ -837,9 +887,6 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer);
 
-        chartsShow_pushButton = new QPushButton(centralWidget);
-        chartsShow_pushButton->setObjectName(QStringLiteral("chartsShow_pushButton"));
-        chartsShow_pushButton->setGeometry(QRect(11, 705, 461, 51));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -891,6 +938,7 @@ public:
         ang_speed_lineEdit->setText(QApplication::translate("MainWindow", "0 \302\260/s", nullptr));
         label_25->setText(QApplication::translate("MainWindow", "Heading:", nullptr));
         heading_lineEdit->setText(QApplication::translate("MainWindow", "0 \302\260", nullptr));
+        chartsShow_pushButton->setText(QApplication::translate("MainWindow", "Show dynamic charts", nullptr));
         groupBox_4->setTitle(QApplication::translate("MainWindow", "Live settings", nullptr));
         groupBox_6->setTitle(QApplication::translate("MainWindow", "Communication", nullptr));
         CSautoPower_checkBox->setText(QApplication::translate("MainWindow", "CS APC", nullptr));
@@ -939,11 +987,17 @@ public:
         groupBox_11->setTitle(QApplication::translate("MainWindow", "Estimated touchdown", nullptr));
         Tabs->setTabText(Tabs->indexOf(tab), QApplication::translate("MainWindow", "General", nullptr));
         groupBox->setTitle(QApplication::translate("MainWindow", "Communication", nullptr));
-        groupBox_2->setTitle(QApplication::translate("MainWindow", "GroupBox", nullptr));
+        groupBox_2->setTitle(QApplication::translate("MainWindow", "Connection with ground station", nullptr));
+        label_26->setText(QApplication::translate("MainWindow", "List of devices:", nullptr));
+        searchGS_pushButton->setText(QApplication::translate("MainWindow", "Search", nullptr));
+        connectGS_pushButton->setText(QApplication::translate("MainWindow", "Connect", nullptr));
+        gs_arduino_state_label->setText(QApplication::translate("MainWindow", "Not found", nullptr));
+        endConnectGS_pushButton->setText(QApplication::translate("MainWindow", "End connection", nullptr));
+        label_27->setText(QApplication::translate("MainWindow", "State:", nullptr));
+        connectionStateGS_label->setText(QApplication::translate("MainWindow", "Not connected", nullptr));
         Tabs->setTabText(Tabs->indexOf(tab_2), QApplication::translate("MainWindow", "Settings", nullptr));
         label_9->setText(QApplication::translate("MainWindow", "Status:", nullptr));
         label_10->setText(QApplication::translate("MainWindow", "Brak Sygna\305\202u", nullptr));
-        chartsShow_pushButton->setText(QApplication::translate("MainWindow", "Show dynamic charts", nullptr));
     } // retranslateUi
 
 };

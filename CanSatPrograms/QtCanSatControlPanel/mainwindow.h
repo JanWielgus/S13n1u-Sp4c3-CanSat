@@ -21,6 +21,8 @@ public:
 private slots:
     void readSerial();
 
+    //void destroySerial();
+
     void on_CSautoPower_checkBox_clicked();
 
     void on_GSautoPower_checkBox_clicked();

@@ -231,6 +231,7 @@ Makefile: ../QtCanSatControlPanel/QtCanSatControlPanel.pro D:/Qt/5.10.0/mingw53_
 		D:/Qt/5.10.0/mingw53_32/lib/qtmaind.prl \
 		D:/Qt/5.10.0/mingw53_32/lib/Qt5Widgets.prl \
 		D:/Qt/5.10.0/mingw53_32/lib/Qt5Gui.prl \
+		D:/Qt/5.10.0/mingw53_32/lib/Qt5SerialPort.prl \
 		D:/Qt/5.10.0/mingw53_32/lib/Qt5Core.prl
 	$(QMAKE) -o Makefile ..\QtCanSatControlPanel\QtCanSatControlPanel.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 D:/Qt/5.10.0/mingw53_32/mkspecs/features/spec_pre.prf:
@@ -403,6 +404,7 @@ D:/Qt/5.10.0/mingw53_32/mkspecs/features/lex.prf:
 D:/Qt/5.10.0/mingw53_32/lib/qtmaind.prl:
 D:/Qt/5.10.0/mingw53_32/lib/Qt5Widgets.prl:
 D:/Qt/5.10.0/mingw53_32/lib/Qt5Gui.prl:
+D:/Qt/5.10.0/mingw53_32/lib/Qt5SerialPort.prl:
 D:/Qt/5.10.0/mingw53_32/lib/Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\QtCanSatControlPanel\QtCanSatControlPanel.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"

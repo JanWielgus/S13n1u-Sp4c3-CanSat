@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     komun.initialize();
 
+    // Nie dziala: QObject::connect(komun.arduino, SIGNAL(destroyed(QObject*)), this, SLOT(destroySerial())); // chodzi o rozlaczanie gdy wyjety kabel
     QObject::connect(komun.arduino, SIGNAL(readyRead()), this, SLOT(readSerial()));
 }
 
@@ -42,6 +43,15 @@ void MainWindow::readSerial()
     }
 }
 
+
+/*
+void MainWindow::destroySerial()
+{
+    ui->listOfDevicesGS_comboBox->clear();
+    ui->connectGS_pushButton->setDisabled(false);
+    ui->connectionStateGS_label->setText(notConnectedText);
+}
+*/
 
 
 void MainWindow::on_CSautoPower_checkBox_clicked()
