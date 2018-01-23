@@ -582,7 +582,7 @@
            <rect>
             <x>12</x>
             <y>190</y>
-            <width>111</width>
+            <width>128</width>
             <height>51</height>
            </rect>
           </property>
@@ -590,18 +590,28 @@
            <item>
             <widget class="QLabel" name="label_11">
              <property name="text">
-              <string>CanSat baud rate:</string>
+              <string>CanSat OA baud rate:</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="cansatBaudRate">
-             <property name="text">
-              <string>1200 kbps</string>
+            <widget class="QComboBox" name="cansatOABaudRate">
+             <property name="currentText">
+              <string>2.4kbps</string>
              </property>
-             <property name="readOnly">
-              <bool>true</bool>
+             <property name="currentIndex">
+              <number>1</number>
              </property>
+             <item>
+              <property name="text">
+               <string>1.2kbps</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>2.4kbps</string>
+              </property>
+             </item>
             </widget>
            </item>
           </layout>
@@ -657,7 +667,7 @@
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_6">
              <item>
-              <widget class="QRadioButton" name="cansatPower1">
+              <widget class="QRadioButton" name="cansatNowPower1">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -667,7 +677,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QRadioButton" name="cansatPower2">
+              <widget class="QRadioButton" name="cansatNowPower2">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -677,7 +687,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QRadioButton" name="cansatPower3">
+              <widget class="QRadioButton" name="cansatNowPower3">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -687,7 +697,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QRadioButton" name="cansatPower4">
+              <widget class="QRadioButton" name="cansatNowPower4">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -817,7 +827,7 @@
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_8">
              <item>
-              <widget class="QRadioButton" name="cansatPower1_2">
+              <widget class="QRadioButton" name="groundStationNowPower1">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -827,7 +837,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QRadioButton" name="cansatPower2_2">
+              <widget class="QRadioButton" name="groundStationNowPower2">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -837,7 +847,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QRadioButton" name="cansatPower3_2">
+              <widget class="QRadioButton" name="groundStationNowPower3">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -847,7 +857,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QRadioButton" name="cansatPower4_2">
+              <widget class="QRadioButton" name="groundStationNowPower4">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -938,14 +948,50 @@
            <enum>Qt::Horizontal</enum>
           </property>
          </widget>
+         <widget class="QWidget" name="layoutWidget_3">
+          <property name="geometry">
+           <rect>
+            <x>145</x>
+            <y>190</y>
+            <width>142</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_10">
+           <item>
+            <widget class="QLabel" name="label_28">
+             <property name="text">
+              <string>CanSat serial baud rate:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="cansatSerialBaudRate">
+             <property name="currentText">
+              <string>1.2kbps</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>1.2kbps</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>2.4kbps</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </widget>
         <widget class="QGroupBox" name="groupBox_7">
          <property name="geometry">
           <rect>
            <x>10</x>
            <y>290</y>
-           <width>191</width>
-           <height>101</height>
+           <width>201</width>
+           <height>131</height>
           </rect>
          </property>
          <property name="title">
@@ -956,8 +1002,8 @@
            <rect>
             <x>7</x>
             <y>18</y>
-            <width>181</width>
-            <height>78</height>
+            <width>191</width>
+            <height>105</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -966,12 +1012,19 @@
              <item>
               <widget class="QRadioButton" name="wMode1_button">
                <property name="text">
-                <string>Before start</string>
+                <string>Power saving mode</string>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QRadioButton" name="wMode2_button">
+               <property name="text">
+                <string>Normal communication</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="wMode3_button">
                <property name="text">
                 <string>CanSat main mission</string>
                </property>
@@ -981,7 +1034,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QRadioButton" name="wMode3_button">
+              <widget class="QRadioButton" name="wMode4_button">
                <property name="text">
                 <string>Searching for CanSat</string>
                </property>
@@ -992,7 +1045,7 @@
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_5">
              <item>
-              <widget class="QRadioButton" name="radioButton">
+              <widget class="QRadioButton" name="wMode1Now_radio">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -1002,7 +1055,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QRadioButton" name="radioButton_2">
+              <widget class="QRadioButton" name="wMode2Now_radio">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -1012,7 +1065,17 @@
               </widget>
              </item>
              <item>
-              <widget class="QRadioButton" name="radioButton_3">
+              <widget class="QRadioButton" name="wMode3Now_radio">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="wMode4Now_radio">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -1157,7 +1220,7 @@
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>398</y>
+           <y>431</y>
            <width>141</width>
            <height>80</height>
           </rect>
@@ -1176,7 +1239,7 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
            <item>
-            <widget class="QProgressBar" name="progressBar">
+            <widget class="QProgressBar" name="fallingStatePercent_bar">
              <property name="enabled">
               <bool>true</bool>
              </property>
@@ -1186,7 +1249,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QTimeEdit" name="timeEdit">
+            <widget class="QTimeEdit" name="fallingState_time">
              <property name="enabled">
               <bool>true</bool>
              </property>
@@ -1317,8 +1380,8 @@
         <rect>
          <x>10</x>
          <y>90</y>
-         <width>151</width>
-         <height>18</height>
+         <width>131</width>
+         <height>21</height>
         </rect>
        </property>
        <layout class="QFormLayout" name="formLayout">
@@ -1333,6 +1396,32 @@
          <widget class="QLabel" name="connectionStateGS_label">
           <property name="text">
            <string>Not connected</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>167</x>
+         <y>90</y>
+         <width>143</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <layout class="QFormLayout" name="formLayout_3">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_29">
+          <property name="text">
+           <string>Baud rate:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="label_30">
+          <property name="text">
+           <string>19200 baud</string>
           </property>
          </widget>
         </item>

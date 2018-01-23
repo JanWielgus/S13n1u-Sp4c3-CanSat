@@ -93,7 +93,7 @@ public:
     QWidget *layoutWidget1;
     QVBoxLayout *verticalLayout_3;
     QLabel *label_11;
-    QLineEdit *cansatBaudRate;
+    QComboBox *cansatOABaudRate;
     QWidget *layoutWidget2;
     QHBoxLayout *horizontalLayout_2;
     QVBoxLayout *verticalLayout_2;
@@ -102,10 +102,10 @@ public:
     QRadioButton *CSpowerButtonMode3;
     QRadioButton *CSpowerButtonMode4;
     QVBoxLayout *verticalLayout_6;
-    QRadioButton *cansatPower1;
-    QRadioButton *cansatPower2;
-    QRadioButton *cansatPower3;
-    QRadioButton *cansatPower4;
+    QRadioButton *cansatNowPower1;
+    QRadioButton *cansatNowPower2;
+    QRadioButton *cansatNowPower3;
+    QRadioButton *cansatNowPower4;
     QWidget *layoutWidget3;
     QFormLayout *formLayout_4;
     QLabel *label_19;
@@ -122,16 +122,20 @@ public:
     QRadioButton *GSpowerButtonMode3;
     QRadioButton *GSpowerButtonMode4;
     QVBoxLayout *verticalLayout_8;
-    QRadioButton *cansatPower1_2;
-    QRadioButton *cansatPower2_2;
-    QRadioButton *cansatPower3_2;
-    QRadioButton *cansatPower4_2;
+    QRadioButton *groundStationNowPower1;
+    QRadioButton *groundStationNowPower2;
+    QRadioButton *groundStationNowPower3;
+    QRadioButton *groundStationNowPower4;
     QFrame *line_7;
     QLabel *label_12;
     QLabel *label_18;
     QCheckBox *GSautoPower_checkBox;
     QFrame *line_9;
     QFrame *line_10;
+    QWidget *layoutWidget_3;
+    QVBoxLayout *verticalLayout_10;
+    QLabel *label_28;
+    QComboBox *cansatSerialBaudRate;
     QGroupBox *groupBox_7;
     QWidget *horizontalLayoutWidget_2;
     QHBoxLayout *horizontalLayout_4;
@@ -139,10 +143,12 @@ public:
     QRadioButton *wMode1_button;
     QRadioButton *wMode2_button;
     QRadioButton *wMode3_button;
+    QRadioButton *wMode4_button;
     QVBoxLayout *verticalLayout_5;
-    QRadioButton *radioButton;
-    QRadioButton *radioButton_2;
-    QRadioButton *radioButton_3;
+    QRadioButton *wMode1Now_radio;
+    QRadioButton *wMode2Now_radio;
+    QRadioButton *wMode3Now_radio;
+    QRadioButton *wMode4Now_radio;
     QGroupBox *groupBox_10;
     QWidget *horizontalLayoutWidget_3;
     QHBoxLayout *horizontalLayout_5;
@@ -158,8 +164,8 @@ public:
     QGroupBox *groupBox_11;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout_9;
-    QProgressBar *progressBar;
-    QTimeEdit *timeEdit;
+    QProgressBar *fallingStatePercent_bar;
+    QTimeEdit *fallingState_time;
     QWidget *tab_2;
     QGroupBox *groupBox;
     QGroupBox *groupBox_2;
@@ -173,6 +179,10 @@ public:
     QFormLayout *formLayout;
     QLabel *label_27;
     QLabel *connectionStateGS_label;
+    QWidget *widget;
+    QFormLayout *formLayout_3;
+    QLabel *label_29;
+    QLabel *label_30;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayout;
     QLabel *label_9;
@@ -436,7 +446,7 @@ public:
         CSautoPower_checkBox->setGeometry(QRect(12, 154, 71, 20));
         layoutWidget1 = new QWidget(groupBox_6);
         layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(12, 190, 111, 51));
+        layoutWidget1->setGeometry(QRect(12, 190, 128, 51));
         verticalLayout_3 = new QVBoxLayout(layoutWidget1);
         verticalLayout_3->setSpacing(6);
         verticalLayout_3->setContentsMargins(11, 11, 11, 11);
@@ -447,11 +457,12 @@ public:
 
         verticalLayout_3->addWidget(label_11);
 
-        cansatBaudRate = new QLineEdit(layoutWidget1);
-        cansatBaudRate->setObjectName(QStringLiteral("cansatBaudRate"));
-        cansatBaudRate->setReadOnly(true);
+        cansatOABaudRate = new QComboBox(layoutWidget1);
+        cansatOABaudRate->addItem(QString());
+        cansatOABaudRate->addItem(QString());
+        cansatOABaudRate->setObjectName(QStringLiteral("cansatOABaudRate"));
 
-        verticalLayout_3->addWidget(cansatBaudRate);
+        verticalLayout_3->addWidget(cansatOABaudRate);
 
         layoutWidget2 = new QWidget(groupBox_6);
         layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
@@ -492,29 +503,29 @@ public:
         verticalLayout_6 = new QVBoxLayout();
         verticalLayout_6->setSpacing(6);
         verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
-        cansatPower1 = new QRadioButton(layoutWidget2);
-        cansatPower1->setObjectName(QStringLiteral("cansatPower1"));
-        cansatPower1->setEnabled(false);
+        cansatNowPower1 = new QRadioButton(layoutWidget2);
+        cansatNowPower1->setObjectName(QStringLiteral("cansatNowPower1"));
+        cansatNowPower1->setEnabled(false);
 
-        verticalLayout_6->addWidget(cansatPower1);
+        verticalLayout_6->addWidget(cansatNowPower1);
 
-        cansatPower2 = new QRadioButton(layoutWidget2);
-        cansatPower2->setObjectName(QStringLiteral("cansatPower2"));
-        cansatPower2->setEnabled(false);
+        cansatNowPower2 = new QRadioButton(layoutWidget2);
+        cansatNowPower2->setObjectName(QStringLiteral("cansatNowPower2"));
+        cansatNowPower2->setEnabled(false);
 
-        verticalLayout_6->addWidget(cansatPower2);
+        verticalLayout_6->addWidget(cansatNowPower2);
 
-        cansatPower3 = new QRadioButton(layoutWidget2);
-        cansatPower3->setObjectName(QStringLiteral("cansatPower3"));
-        cansatPower3->setEnabled(false);
+        cansatNowPower3 = new QRadioButton(layoutWidget2);
+        cansatNowPower3->setObjectName(QStringLiteral("cansatNowPower3"));
+        cansatNowPower3->setEnabled(false);
 
-        verticalLayout_6->addWidget(cansatPower3);
+        verticalLayout_6->addWidget(cansatNowPower3);
 
-        cansatPower4 = new QRadioButton(layoutWidget2);
-        cansatPower4->setObjectName(QStringLiteral("cansatPower4"));
-        cansatPower4->setEnabled(false);
+        cansatNowPower4 = new QRadioButton(layoutWidget2);
+        cansatNowPower4->setObjectName(QStringLiteral("cansatNowPower4"));
+        cansatNowPower4->setEnabled(false);
 
-        verticalLayout_6->addWidget(cansatPower4);
+        verticalLayout_6->addWidget(cansatNowPower4);
 
 
         horizontalLayout_2->addLayout(verticalLayout_6);
@@ -600,29 +611,29 @@ public:
         verticalLayout_8 = new QVBoxLayout();
         verticalLayout_8->setSpacing(6);
         verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
-        cansatPower1_2 = new QRadioButton(layoutWidget_2);
-        cansatPower1_2->setObjectName(QStringLiteral("cansatPower1_2"));
-        cansatPower1_2->setEnabled(false);
+        groundStationNowPower1 = new QRadioButton(layoutWidget_2);
+        groundStationNowPower1->setObjectName(QStringLiteral("groundStationNowPower1"));
+        groundStationNowPower1->setEnabled(false);
 
-        verticalLayout_8->addWidget(cansatPower1_2);
+        verticalLayout_8->addWidget(groundStationNowPower1);
 
-        cansatPower2_2 = new QRadioButton(layoutWidget_2);
-        cansatPower2_2->setObjectName(QStringLiteral("cansatPower2_2"));
-        cansatPower2_2->setEnabled(false);
+        groundStationNowPower2 = new QRadioButton(layoutWidget_2);
+        groundStationNowPower2->setObjectName(QStringLiteral("groundStationNowPower2"));
+        groundStationNowPower2->setEnabled(false);
 
-        verticalLayout_8->addWidget(cansatPower2_2);
+        verticalLayout_8->addWidget(groundStationNowPower2);
 
-        cansatPower3_2 = new QRadioButton(layoutWidget_2);
-        cansatPower3_2->setObjectName(QStringLiteral("cansatPower3_2"));
-        cansatPower3_2->setEnabled(false);
+        groundStationNowPower3 = new QRadioButton(layoutWidget_2);
+        groundStationNowPower3->setObjectName(QStringLiteral("groundStationNowPower3"));
+        groundStationNowPower3->setEnabled(false);
 
-        verticalLayout_8->addWidget(cansatPower3_2);
+        verticalLayout_8->addWidget(groundStationNowPower3);
 
-        cansatPower4_2 = new QRadioButton(layoutWidget_2);
-        cansatPower4_2->setObjectName(QStringLiteral("cansatPower4_2"));
-        cansatPower4_2->setEnabled(false);
+        groundStationNowPower4 = new QRadioButton(layoutWidget_2);
+        groundStationNowPower4->setObjectName(QStringLiteral("groundStationNowPower4"));
+        groundStationNowPower4->setEnabled(false);
 
-        verticalLayout_8->addWidget(cansatPower4_2);
+        verticalLayout_8->addWidget(groundStationNowPower4);
 
 
         horizontalLayout_3->addLayout(verticalLayout_8);
@@ -651,12 +662,32 @@ public:
         line_10->setGeometry(QRect(9, 172, 401, 20));
         line_10->setFrameShape(QFrame::HLine);
         line_10->setFrameShadow(QFrame::Sunken);
+        layoutWidget_3 = new QWidget(groupBox_6);
+        layoutWidget_3->setObjectName(QStringLiteral("layoutWidget_3"));
+        layoutWidget_3->setGeometry(QRect(145, 190, 142, 51));
+        verticalLayout_10 = new QVBoxLayout(layoutWidget_3);
+        verticalLayout_10->setSpacing(6);
+        verticalLayout_10->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_10->setObjectName(QStringLiteral("verticalLayout_10"));
+        verticalLayout_10->setContentsMargins(0, 0, 0, 0);
+        label_28 = new QLabel(layoutWidget_3);
+        label_28->setObjectName(QStringLiteral("label_28"));
+
+        verticalLayout_10->addWidget(label_28);
+
+        cansatSerialBaudRate = new QComboBox(layoutWidget_3);
+        cansatSerialBaudRate->addItem(QString());
+        cansatSerialBaudRate->addItem(QString());
+        cansatSerialBaudRate->setObjectName(QStringLiteral("cansatSerialBaudRate"));
+
+        verticalLayout_10->addWidget(cansatSerialBaudRate);
+
         groupBox_7 = new QGroupBox(groupBox_4);
         groupBox_7->setObjectName(QStringLiteral("groupBox_7"));
-        groupBox_7->setGeometry(QRect(10, 290, 191, 101));
+        groupBox_7->setGeometry(QRect(10, 290, 201, 131));
         horizontalLayoutWidget_2 = new QWidget(groupBox_7);
         horizontalLayoutWidget_2->setObjectName(QStringLiteral("horizontalLayoutWidget_2"));
-        horizontalLayoutWidget_2->setGeometry(QRect(7, 18, 181, 78));
+        horizontalLayoutWidget_2->setGeometry(QRect(7, 18, 191, 105));
         horizontalLayout_4 = new QHBoxLayout(horizontalLayoutWidget_2);
         horizontalLayout_4->setSpacing(6);
         horizontalLayout_4->setContentsMargins(11, 11, 11, 11);
@@ -672,14 +703,19 @@ public:
 
         wMode2_button = new QRadioButton(horizontalLayoutWidget_2);
         wMode2_button->setObjectName(QStringLiteral("wMode2_button"));
-        wMode2_button->setChecked(true);
 
         verticalLayout_4->addWidget(wMode2_button);
 
         wMode3_button = new QRadioButton(horizontalLayoutWidget_2);
         wMode3_button->setObjectName(QStringLiteral("wMode3_button"));
+        wMode3_button->setChecked(true);
 
         verticalLayout_4->addWidget(wMode3_button);
+
+        wMode4_button = new QRadioButton(horizontalLayoutWidget_2);
+        wMode4_button->setObjectName(QStringLiteral("wMode4_button"));
+
+        verticalLayout_4->addWidget(wMode4_button);
 
 
         horizontalLayout_4->addLayout(verticalLayout_4);
@@ -687,23 +723,29 @@ public:
         verticalLayout_5 = new QVBoxLayout();
         verticalLayout_5->setSpacing(6);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
-        radioButton = new QRadioButton(horizontalLayoutWidget_2);
-        radioButton->setObjectName(QStringLiteral("radioButton"));
-        radioButton->setEnabled(false);
+        wMode1Now_radio = new QRadioButton(horizontalLayoutWidget_2);
+        wMode1Now_radio->setObjectName(QStringLiteral("wMode1Now_radio"));
+        wMode1Now_radio->setEnabled(false);
 
-        verticalLayout_5->addWidget(radioButton);
+        verticalLayout_5->addWidget(wMode1Now_radio);
 
-        radioButton_2 = new QRadioButton(horizontalLayoutWidget_2);
-        radioButton_2->setObjectName(QStringLiteral("radioButton_2"));
-        radioButton_2->setEnabled(false);
+        wMode2Now_radio = new QRadioButton(horizontalLayoutWidget_2);
+        wMode2Now_radio->setObjectName(QStringLiteral("wMode2Now_radio"));
+        wMode2Now_radio->setEnabled(false);
 
-        verticalLayout_5->addWidget(radioButton_2);
+        verticalLayout_5->addWidget(wMode2Now_radio);
 
-        radioButton_3 = new QRadioButton(horizontalLayoutWidget_2);
-        radioButton_3->setObjectName(QStringLiteral("radioButton_3"));
-        radioButton_3->setEnabled(false);
+        wMode3Now_radio = new QRadioButton(horizontalLayoutWidget_2);
+        wMode3Now_radio->setObjectName(QStringLiteral("wMode3Now_radio"));
+        wMode3Now_radio->setEnabled(false);
 
-        verticalLayout_5->addWidget(radioButton_3);
+        verticalLayout_5->addWidget(wMode3Now_radio);
+
+        wMode4Now_radio = new QRadioButton(horizontalLayoutWidget_2);
+        wMode4Now_radio->setObjectName(QStringLiteral("wMode4Now_radio"));
+        wMode4Now_radio->setEnabled(false);
+
+        verticalLayout_5->addWidget(wMode4Now_radio);
 
 
         horizontalLayout_4->addLayout(verticalLayout_5);
@@ -783,7 +825,7 @@ public:
         groupBox_11 = new QGroupBox(groupBox_4);
         groupBox_11->setObjectName(QStringLiteral("groupBox_11"));
         groupBox_11->setEnabled(true);
-        groupBox_11->setGeometry(QRect(10, 398, 141, 80));
+        groupBox_11->setGeometry(QRect(10, 431, 141, 80));
         verticalLayoutWidget = new QWidget(groupBox_11);
         verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
         verticalLayoutWidget->setGeometry(QRect(5, 19, 131, 55));
@@ -792,21 +834,21 @@ public:
         verticalLayout_9->setContentsMargins(11, 11, 11, 11);
         verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
         verticalLayout_9->setContentsMargins(0, 0, 0, 0);
-        progressBar = new QProgressBar(verticalLayoutWidget);
-        progressBar->setObjectName(QStringLiteral("progressBar"));
-        progressBar->setEnabled(true);
-        progressBar->setValue(0);
+        fallingStatePercent_bar = new QProgressBar(verticalLayoutWidget);
+        fallingStatePercent_bar->setObjectName(QStringLiteral("fallingStatePercent_bar"));
+        fallingStatePercent_bar->setEnabled(true);
+        fallingStatePercent_bar->setValue(0);
 
-        verticalLayout_9->addWidget(progressBar);
+        verticalLayout_9->addWidget(fallingStatePercent_bar);
 
-        timeEdit = new QTimeEdit(verticalLayoutWidget);
-        timeEdit->setObjectName(QStringLiteral("timeEdit"));
-        timeEdit->setEnabled(true);
-        timeEdit->setAlignment(Qt::AlignCenter);
-        timeEdit->setReadOnly(true);
-        timeEdit->setButtonSymbols(QAbstractSpinBox::NoButtons);
+        fallingState_time = new QTimeEdit(verticalLayoutWidget);
+        fallingState_time->setObjectName(QStringLiteral("fallingState_time"));
+        fallingState_time->setEnabled(true);
+        fallingState_time->setAlignment(Qt::AlignCenter);
+        fallingState_time->setReadOnly(true);
+        fallingState_time->setButtonSymbols(QAbstractSpinBox::NoButtons);
 
-        verticalLayout_9->addWidget(timeEdit);
+        verticalLayout_9->addWidget(fallingState_time);
 
 
         gridLayout_3->addWidget(groupBox_4, 0, 1, 1, 1);
@@ -840,7 +882,7 @@ public:
         endConnectGS_pushButton->setGeometry(QRect(201, 56, 101, 28));
         layoutWidget4 = new QWidget(groupBox_2);
         layoutWidget4->setObjectName(QStringLiteral("layoutWidget4"));
-        layoutWidget4->setGeometry(QRect(10, 90, 151, 18));
+        layoutWidget4->setGeometry(QRect(10, 90, 131, 21));
         formLayout = new QFormLayout(layoutWidget4);
         formLayout->setSpacing(6);
         formLayout->setContentsMargins(11, 11, 11, 11);
@@ -855,6 +897,24 @@ public:
         connectionStateGS_label->setObjectName(QStringLiteral("connectionStateGS_label"));
 
         formLayout->setWidget(0, QFormLayout::FieldRole, connectionStateGS_label);
+
+        widget = new QWidget(groupBox_2);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(167, 90, 143, 18));
+        formLayout_3 = new QFormLayout(widget);
+        formLayout_3->setSpacing(6);
+        formLayout_3->setContentsMargins(11, 11, 11, 11);
+        formLayout_3->setObjectName(QStringLiteral("formLayout_3"));
+        formLayout_3->setContentsMargins(0, 0, 0, 0);
+        label_29 = new QLabel(widget);
+        label_29->setObjectName(QStringLiteral("label_29"));
+
+        formLayout_3->setWidget(0, QFormLayout::LabelRole, label_29);
+
+        label_30 = new QLabel(widget);
+        label_30->setObjectName(QStringLiteral("label_30"));
+
+        formLayout_3->setWidget(0, QFormLayout::FieldRole, label_30);
 
         Tabs->addTab(tab_2, QString());
         horizontalLayoutWidget = new QWidget(centralWidget);
@@ -899,6 +959,7 @@ public:
         retranslateUi(MainWindow);
 
         Tabs->setCurrentIndex(0);
+        cansatOABaudRate->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -942,16 +1003,19 @@ public:
         groupBox_4->setTitle(QApplication::translate("MainWindow", "Live settings", nullptr));
         groupBox_6->setTitle(QApplication::translate("MainWindow", "Communication", nullptr));
         CSautoPower_checkBox->setText(QApplication::translate("MainWindow", "CS APC", nullptr));
-        label_11->setText(QApplication::translate("MainWindow", "CanSat baud rate:", nullptr));
-        cansatBaudRate->setText(QApplication::translate("MainWindow", "1200 kbps", nullptr));
+        label_11->setText(QApplication::translate("MainWindow", "CanSat OA baud rate:", nullptr));
+        cansatOABaudRate->setItemText(0, QApplication::translate("MainWindow", "1.2kbps", nullptr));
+        cansatOABaudRate->setItemText(1, QApplication::translate("MainWindow", "2.4kbps", nullptr));
+
+        cansatOABaudRate->setCurrentText(QApplication::translate("MainWindow", "2.4kbps", nullptr));
         CSpowerButtonMode1->setText(QApplication::translate("MainWindow", "27 dBm", nullptr));
         CSpowerButtonMode2->setText(QApplication::translate("MainWindow", "24 dBm", nullptr));
         CSpowerButtonMode3->setText(QApplication::translate("MainWindow", "21 dBm", nullptr));
         CSpowerButtonMode4->setText(QApplication::translate("MainWindow", "18 dBm", nullptr));
-        cansatPower1->setText(QString());
-        cansatPower2->setText(QString());
-        cansatPower3->setText(QString());
-        cansatPower4->setText(QString());
+        cansatNowPower1->setText(QString());
+        cansatNowPower2->setText(QString());
+        cansatNowPower3->setText(QString());
+        cansatNowPower4->setText(QString());
         label_19->setText(QApplication::translate("MainWindow", "PPS:", nullptr));
         PPS_lineEdit->setText(QApplication::translate("MainWindow", "0", nullptr));
         label_20->setText(QApplication::translate("MainWindow", "Packets sent:", nullptr));
@@ -962,20 +1026,27 @@ public:
         GSpowerButtonMode2->setText(QApplication::translate("MainWindow", "24 dBm", nullptr));
         GSpowerButtonMode3->setText(QApplication::translate("MainWindow", "21 dBm", nullptr));
         GSpowerButtonMode4->setText(QApplication::translate("MainWindow", "18 dBm", nullptr));
-        cansatPower1_2->setText(QString());
-        cansatPower2_2->setText(QString());
-        cansatPower3_2->setText(QString());
-        cansatPower4_2->setText(QString());
+        groundStationNowPower1->setText(QString());
+        groundStationNowPower2->setText(QString());
+        groundStationNowPower3->setText(QString());
+        groundStationNowPower4->setText(QString());
         label_12->setText(QApplication::translate("MainWindow", "CanSat", nullptr));
         label_18->setText(QApplication::translate("MainWindow", "Ground station", nullptr));
         GSautoPower_checkBox->setText(QApplication::translate("MainWindow", "GS APC", nullptr));
+        label_28->setText(QApplication::translate("MainWindow", "CanSat serial baud rate:", nullptr));
+        cansatSerialBaudRate->setItemText(0, QApplication::translate("MainWindow", "1.2kbps", nullptr));
+        cansatSerialBaudRate->setItemText(1, QApplication::translate("MainWindow", "2.4kbps", nullptr));
+
+        cansatSerialBaudRate->setCurrentText(QApplication::translate("MainWindow", "1.2kbps", nullptr));
         groupBox_7->setTitle(QApplication::translate("MainWindow", "Working mode", nullptr));
-        wMode1_button->setText(QApplication::translate("MainWindow", "Before start", nullptr));
-        wMode2_button->setText(QApplication::translate("MainWindow", "CanSat main mission", nullptr));
-        wMode3_button->setText(QApplication::translate("MainWindow", "Searching for CanSat", nullptr));
-        radioButton->setText(QString());
-        radioButton_2->setText(QString());
-        radioButton_3->setText(QString());
+        wMode1_button->setText(QApplication::translate("MainWindow", "Power saving mode", nullptr));
+        wMode2_button->setText(QApplication::translate("MainWindow", "Normal communication", nullptr));
+        wMode3_button->setText(QApplication::translate("MainWindow", "CanSat main mission", nullptr));
+        wMode4_button->setText(QApplication::translate("MainWindow", "Searching for CanSat", nullptr));
+        wMode1Now_radio->setText(QString());
+        wMode2Now_radio->setText(QString());
+        wMode3Now_radio->setText(QString());
+        wMode4Now_radio->setText(QString());
         groupBox_10->setTitle(QApplication::translate("MainWindow", "Estimated flight stages", nullptr));
         flightStage1_checkBox->setText(QApplication::translate("MainWindow", "Liftoff", nullptr));
         flightStage2_checkBox->setText(QApplication::translate("MainWindow", "CanSat release", nullptr));
@@ -995,6 +1066,8 @@ public:
         endConnectGS_pushButton->setText(QApplication::translate("MainWindow", "End connection", nullptr));
         label_27->setText(QApplication::translate("MainWindow", "State:", nullptr));
         connectionStateGS_label->setText(QApplication::translate("MainWindow", "Not connected", nullptr));
+        label_29->setText(QApplication::translate("MainWindow", "Baud rate:", nullptr));
+        label_30->setText(QApplication::translate("MainWindow", "19200 baud", nullptr));
         Tabs->setTabText(Tabs->indexOf(tab_2), QApplication::translate("MainWindow", "Settings", nullptr));
         label_9->setText(QApplication::translate("MainWindow", "Status:", nullptr));
         label_10->setText(QApplication::translate("MainWindow", "Brak Sygna\305\202u", nullptr));
