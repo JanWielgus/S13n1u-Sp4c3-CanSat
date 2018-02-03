@@ -28,6 +28,17 @@ class SensorsClass
 	void init();
 	void readAngles(); // roll, pitch, yaw
 	
+	void readPressure();
+	void readTemperature();
+	void readPosition();
+	void readCO2();
+	void readtVOC();
+	void readRelativeHumid();
+	void readIonizingRadiation();
+	void readPM25();
+	void readVoltage();
+	void readHeading();
+	
 	// to send, to save transmitted data
 	uint16_t compressPressure(float pres);
 	uint8_t compressHeading(float head);
@@ -43,7 +54,7 @@ class SensorsClass
 	}DMPang;
 	
 	float pressure;
-	uint16_t pressureComp;         // Compressed version, to send
+	uint16_t pressureComp;         // Compressed version, to send (or send full version)
 	uint8_t temperature;
 	uint8_t carbDiOx;              // CO2
 	uint8_t tVOC;
