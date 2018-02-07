@@ -26,8 +26,9 @@ class SensorsClass
 	
  public:
 	void init();
-	void readAngles(); // roll, pitch, yaw
 	
+	// sensors data read
+	void readAngles(); // roll, pitch, yaw
 	void readPressure();
 	void readTemperature();
 	void readPosition();
@@ -38,6 +39,9 @@ class SensorsClass
 	void readPM25();
 	void readVoltage();
 	void readHeading();
+	
+	// OpenLog
+	void saveLogData();            // save list of data on sd card as backup
 	
 	// to send, to save transmitted data
 	uint16_t compressPressure(float pres);

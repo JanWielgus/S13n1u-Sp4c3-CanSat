@@ -32,6 +32,12 @@ class CommunicationClass
 	void wyslij(uint8_t typRamki);
 	bool connectionState();                                    // true - is; false - isn't
 	
+	void setTransmitPower(bool b1, bool b2);    // set transmitting power
+	void setWorkingMode(bool b1, bool b2);
+	void setOTASpeed(bool b1);                      // set the Over The Air spped (in kbps)
+	void autoTransmitPower();                       // if CanSat have to decide automaticly
+	void writeParamsToTransciever();                // write parameters to transciever
+	
  private:
 	bool sprawdzSumeKontr(const uint8_t* buffer, size_t manipPacketSize); //xor'owanie
 	uint8_t liczSumeKontr(const uint8_t* buffer, size_t manipPacketSize);
@@ -39,6 +45,12 @@ class CommunicationClass
 	
 // ===== VARIABLES =====
  public:
+	uint8_t head;
+	uint8_t addh;
+	uint8_t addl;
+	bitByte sped;
+	bitByte chan;
+	bitByte option;
 	
 	
  private:

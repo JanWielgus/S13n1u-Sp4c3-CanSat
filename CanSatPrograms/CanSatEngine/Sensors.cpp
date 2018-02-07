@@ -165,3 +165,80 @@ uint8_t SensorsClass::compressHeading(float head)
 
 
 
+void SensorsClass::readPressure()
+{
+	return;
+}
+
+
+
+void SensorsClass::readTemperature()
+{
+	return;
+}
+
+
+
+void SensorsClass::readPosition()
+{
+	return;
+}
+
+
+
+void SensorsClass::readCO2()
+{
+	return;
+}
+
+
+
+void SensorsClass::readtVOC()
+{
+	return;
+}
+
+
+
+void SensorsClass::readRelativeHumid()
+{
+	return;
+}
+
+
+
+void SensorsClass::readIonizingRadiation()
+{
+	return;
+}
+
+
+
+void SensorsClass::readPM25()
+{
+	return;
+}
+
+
+
+void SensorsClass::readVoltage()
+{
+	return;
+}
+
+
+
+void SensorsClass::readHeading()
+{
+	return;
+}
+
+
+
+void SensorsClass:: saveLogData()
+{
+	return;
+}
+
+
+

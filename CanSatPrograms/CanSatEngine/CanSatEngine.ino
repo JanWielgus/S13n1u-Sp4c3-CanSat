@@ -17,29 +17,12 @@
 // function prototypes
 void recieve();
 void send();
-void getSensorsValues();
-
-void setTransmittingPower(bool, bool);  // set transmitting power
-void setWorkingMode(bool, bool);
-void setOTASpeed(bool);                 // set the Over The Air spped (in kbps)
-void autoSetTransmitPower();            // if CanSat have to decide automaticly
-
-void writeParamsToTransciever();        // write parameters to transciever
+void updateSensorsValues();
 
 
 
 // variables
 bool readyToSend = false; // to send every second function run
-
-
-
-// transciever setting bytes
-uint8_t head = 0xC0;
-uint8_t addh = 0x00;
-uint8_t addl = 0x00;
-uint8_t sped = 0x18;
-uint8_t chan = 0x50;
-uint8_t option = 0x44;
 
 
 
@@ -56,12 +39,14 @@ void setup()
 	
 	Tasker.dodajMidTask(recieve);
 	Tasker.dodajMidTask(send);
-	Tasker.dodajMidTask(getSensorsValues);
+	Tasker.dodajMidTask(updateSensorsValues);
 }
 
 void loop()
 {
 	// Code run in background
+	
+	Tasker.wykonajZadania();
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -74,13 +59,14 @@ void recieve()
 	
 	
 	// ... then set everything after
-	
+		// like transmit power etc.
 	
 }
 
 
 void send()
 {
+	// Sending every second run of function (2.5 times/s)
 	if (readyToSend)
 	{
 		// Sending part
@@ -94,93 +80,20 @@ void send()
 }
 
 
-void getSensorsValues()
+void updateSensorsValues()
 {
-	// kod pobiernia danych z czujnikow
+	sensor.readAngles();
+	sensor.readPressure();
+	sensor.readTemperature();
+	sensor.readPosition();
+	sensor.readCO2();
+	sensor.readtVOC();
+	sensor.readRelativeHumid();
+	sensor.readIonizingRadiation();
+	sensor.readPM25();
+	sensor.readVoltage();
+	sensor.readHeading();
+	
+	sensor.saveLogData();
 }
 
-
-
-
-void setTransmittingPower(bool b1, bool b2)
-{
-	if (b1 == 1 && b2 == 1)
-	{
-		// 18dBm
-		
-	}
-	
-	else if (b1 == 1 && b2 == 0)
-	{
-		// 21dBm
-		
-	} 
-	
-	else if (b1 == 0 && b2 == 1)
-	{
-		// 24dBm
-		
-	}
-	
-	else
-	{
-		// 27dBm
-		
-	}
-}
-
-
-void setWorkingMode(bool b1, bool b2)
-{
-	if (b1 == 1 && b2 == 1)
-	{
-		// 4
-		
-	}
-	
-	else if (b1 == 1 && b2 == 0)
-	{
-		// 3
-		
-	}
-	
-	else if (b1 == 0 && b2 == 1)
-	{
-		// 2
-		
-	}
-	
-	else
-	{
-		// 1
-		
-	}
-}
-
-
-void setOTASpeed(bool b1)
-{
-	if (b1)
-	{
-		// 2.4kbps
-		
-	}
-	
-	else
-	{
-		// 1.2kbps
-		
-	}
-}
-
-
-void autoSetTransmitPower()
-{
-	//...
-}
-
-
-void writeParamsToTransciever()
-{
-	//...
-}

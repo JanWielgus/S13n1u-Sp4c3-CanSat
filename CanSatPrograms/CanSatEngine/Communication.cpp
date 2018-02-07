@@ -25,6 +25,14 @@ void CommunicationClass::init()
 {
 	pSerial.setPacketHandler(_protezaOdbierz);
 	pSerial.begin(BAUD_RATE, serialPort);
+	
+	// transciever deafult settings
+	head        = 0xC0;
+	addh        = 0x00;
+	addl        = 0x00;
+	sped.bajt   = 0x18;
+	chan.bajt   = 0x50;
+	option.bajt = 0x44;
 }
 
 
@@ -96,4 +104,91 @@ uint8_t CommunicationClass::liczSumeKontr(const uint8_t* buffer, size_t PacketSi
 }
 
 
+
+void CommunicationClass::setTransmitPower(bool b1, bool b2)
+{
+	if (b1 == 1 && b2 == 1)
+	{
+		// 18dBm
+		
+	}
+	
+	else if (b1 == 1 && b2 == 0)
+	{
+		// 21dBm
+		
+	}
+	
+	else if (b1 == 0 && b2 == 1)
+	{
+		// 24dBm
+		
+	}
+	
+	else
+	{
+		// 27dBm
+		
+	}
+}
+
+
+
+void CommunicationClass::setWorkingMode(bool b1, bool b2)
+{
+	if (b1 == 1 && b2 == 1)
+	{
+		// 4
+		
+	}
+	
+	else if (b1 == 1 && b2 == 0)
+	{
+		// 3
+		
+	}
+	
+	else if (b1 == 0 && b2 == 1)
+	{
+		// 2
+		
+	}
+	
+	else
+	{
+		// 1
+		
+	}
+}
+
+
+
+void CommunicationClass::setOTASpeed(bool b1)
+{
+	if (b1)
+	{
+		// 2.4kbps
+		
+	}
+	
+	else
+	{
+		// 1.2kbps
+		
+	}
+}
+
+
+
+void CommunicationClass::autoTransmitPower()
+{
+	return;
+}
+
+
+
+void CommunicationClass::writeParamsToTransciever()
+{
+	return;
+}
 
