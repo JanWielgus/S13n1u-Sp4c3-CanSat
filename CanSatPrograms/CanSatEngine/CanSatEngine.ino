@@ -15,7 +15,7 @@
 
 
 // function prototypes
-void run_program();
+void run_program(); // this function run other functions 5 times/sec
 void recieve();
 void send();
 void updateSensorsValues();
@@ -31,14 +31,14 @@ uint8_t run_counter = 1;  // to run program 5 times/sec
 
 void setup()
 {
-	Tasker.init();
-	com.init();
-	sensor.init();
-	
 	#ifdef _INO_DEBUG
 		Serial.begin(9600);
 		Serial.println("Program has just started");
 	#endif
+	
+	Tasker.init();
+	com.init();
+	sensor.init();
 	
 	Tasker.dodajHighTask(run_program);
 }
@@ -70,6 +70,7 @@ void run_program()
 }
 
 
+
 void recieve()
 {
 	// Recieving part ...
@@ -78,21 +79,30 @@ void recieve()
 	
 	// ... then set everything after
 		// like transmit power etc.
-	
-}
-
-
-void send()
-{
-	// Sending every second run of function (2.5 times/s)
-	if (readyToSend)
-	{
-		// Sending part
 		
-		readyToSend = false;
+	com.setTransmitPower();
+	
+	if (com.connectionState())
+	{
+		// something if is a connection
+		
+		com.setWorkingMode(com.switchesR.b4, com.switchesR.b3);
+		com.setOTASpeed(com.switchesR.b2);
 	}
-	else readyToSend = true;
+	else
+	{
+		// something if isn't
+		
+		if (com.timeAfterSL > RESTORE_CONNECTION_PARAMS_TIME)
+		{
+			com.setOTASpeed(0); // 1.2kbps
+			com.setFrequency(DEFAULT_FREQUENCY); // 433mHz
+		}
+	}
+	
+	com.writeParamsToTransceiver();
 }
+
 
 
 void updateSensorsValues()
@@ -112,3 +122,23 @@ void updateSensorsValues()
 	sensor.saveLogData();
 }
 
+
+
+void send()
+{
+	// Read needed data before send
+	
+	com.getOTASpeed(&com.settingsConfirmation.b3);
+	com.getTransmitPower(&com.settingsConfirmation.b7, &com.settingsConfirmation.b6);
+	com.getWorkingMode(&com.settingsConfirmation.b5, &com.settingsConfirmation.b4);
+	
+	
+	// Sending every second run of function (2.5 times/s)
+	if (readyToSend)
+	{
+		// Sending part
+		
+		readyToSend = false;
+	}
+	else readyToSend = true;
+}

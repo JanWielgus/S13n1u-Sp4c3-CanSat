@@ -25,9 +25,21 @@
 // ===== CONSTANS ===== (eg. pins)
 
 	#define MAX_LOST_PACKETS 2          // If more -> signal lost mode
-	#define MPU_INTERRUPT_PIN 2        // All interrupt: 2, 3, 18, 19, 20, 21
+	#define MPU_INTERRUPT_PIN 2         // All interrupt: 2, 3, 18, 19, 20, 21
 	#define ION_RAD_PIN A0              // Ionizing radiation analog pin
-
+	
+	
+	// Working modes
+	#define POWS_MODE        1          // Power save mode
+	#define NORMCOM_MODE     2          // Normal communication
+	#define MAINMISSION_MODE 3          // Main mission
+	#define SEARCHING_MODE   4          // Searching for CanSat
+	
+	// transmission powers
+	#define DBM27 4  // 27dBm
+	#define DBM24 3  // 24dBm
+	#define DBM21 2  // 21dBm
+	#define DBM18 1  // 18dBm
 
 
 
@@ -39,6 +51,7 @@
 	// Packets MUST HAVE IDEAL size as needed!!!
 	
 	#define serialPort 1                      // Serial: 0, Serial1: 1, Serial2: 2, Serial3: 3
+	#define comSerial Serial1                 // Serial with transceiver
 	#define BAUD_RATE 9600                    // With transciever
 	#define MAX_SEND_SIZE 30                  // Size of the largest packet (could be higher than needed)
 	
@@ -49,6 +62,15 @@
 	
 	// -- transmit --
 	//...
+	
+	
+	// times [ms] after CanSat set ... power; eg. after x[ms] high power is set
+	#define HP_SET_TIME 2500  // High power (27dBm)
+	#define MP_SET_TIME 1100  // Medium power (21dBm)
+	
+	#define  RESTORE_CONNECTION_PARAMS_TIME 3000  // Time after signal lost when OTA speed is set to 1.2kbps
+	
+	#define DEFAULT_FREQUENCY 0x50
 	
 	
 	

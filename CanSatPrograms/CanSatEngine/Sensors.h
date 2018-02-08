@@ -68,6 +68,8 @@ class SensorsClass
 	uint8_t voltage;
 	float heading;
 	uint8_t headingComp;           // Compressed version, to send
+	float gpsX;
+	float gpsY;
   
 	
  

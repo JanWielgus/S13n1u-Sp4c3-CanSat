@@ -4,13 +4,18 @@ Opis protokołu CanSat CanSat-GroundStation Serial:
    Bajty występują w naturalnej kolejności dla AVR i PC - Little Endian - najpierw idzie niższy bajt
 
 2. Pakiet kierunku GroundStation--->CanSat występuje tylko w jednym typie:
+
+	Typ ramki - wszystkie parametry (bajt 0: 0x00):
 	0. XOR wszystkich następnych bajtów (suma kontrolna) (unsigned 8b)
-	1. Przełączniki (unsigned 8b);
+	1. Przełączniki (unsigned 8b):
 			bit 7 - prośba o dokładną pozyjcę (0 - nie ma; 1 - jest),
 			bit 6 i bit 5 - żądana moc nadawania (kolejno: 00 - 27dBm; 01 - 24dBm; 10 - 21dBm; 11 - 18dBm),
 			bit 4 i bit 3 - tryb pracy (kolejno: 00 - 1; 01 - 2; 10 - 3; 11 - 4),
-			bit 2 i bit 1 - żądana prędkość OverTheAir (0 - 1.2; 1 - 2.4),
+			bit 2 - żądana prędkość OverTheAir (0 - 1.2; 1 - 2.4),
+			bit 1 - 
 			bit 0 - automatyczna moc (0 - nie ma; 1 - jest),
+	2. Częstotliwość (unsigned 8b): odpowiedni bajt z częstotliwością
+	
    
 
 3. Pakiet kierunku CanSat--->GroundStation może występować w kilku typach:
@@ -21,7 +26,8 @@ Opis protokołu CanSat CanSat-GroundStation Serial:
 	2. Booleany sterujące (unsigned 8b):
 			bit 7 i bit 6 - aktualna moc nadawania (kolejno: 00 - 27dBm; 01 - 24dBm; 10 - 21dBm; 11 - 18dBm),
 			bit 5 i bit 4 - tryb pracy (kolejno: 00 - 1; 01 - 2; 10 - 3; 11 - 4),
-			bit 3 - 
+			bit 3 - prędkość OverTheAir (0 - 1.2; 1 - 2.4),
+			bit 2 - potwierdzenie odebrania ramki typu 0x01 (częstotliwość)
 	3. Aktualna temperatura (unsigned 8b)
 	4. Aktualne ciśnienie (float 32b)
 	5. cd^

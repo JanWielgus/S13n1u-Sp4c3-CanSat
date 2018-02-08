@@ -33,6 +33,9 @@ void CommunicationClass::init()
 	sped.bajt   = 0x18;
 	chan.bajt   = 0x50;
 	option.bajt = 0x44;
+	
+	//default working mode
+	workingMode = NORMCOM_MODE; // normal communication
 }
 
 
@@ -48,6 +51,8 @@ void CommunicationClass::odbierz()
 		lost_packets=0;
 	else
 		lost_packets++;
+		
+	if (!connectionState()) con_lost_time = millis();
 }
 
 
@@ -77,6 +82,7 @@ bool CommunicationClass::connectionState()
 {
 	if (lost_packets < MAX_LOST_PACKETS)
 		return true;
+	timeAfterSL = millis()-con_lost_time;
 	return false; // otherwise
 }
 
@@ -110,26 +116,88 @@ void CommunicationClass::setTransmitPower(bool b1, bool b2)
 	if (b1 == 1 && b2 == 1)
 	{
 		// 18dBm
-		
+		option.b6 = 1;
+		option.b7 = 1;
 	}
 	
 	else if (b1 == 1 && b2 == 0)
 	{
 		// 21dBm
-		
+		option.b6 = 1;
+		option.b7 = 0;
 	}
 	
 	else if (b1 == 0 && b2 == 1)
 	{
 		// 24dBm
-		
+		option.b6 = 0;
+		option.b7 = 1;
 	}
 	
 	else
 	{
 		// 27dBm
-		
+		option.b6 = 0;
+		option.b7 = 0;
 	}
+}
+
+
+
+// overloaded
+void CommunicationClass::setTransmitPower(uint8_t power)
+{
+	switch (power)
+	{
+		case DBM18:
+			setTransmitPower(1, 1);
+			break;
+		case DBM21:
+			setTransmitPower(1, 0);
+			break;
+		case DBM24:
+			setTransmitPower(0, 1);
+			break;
+		case DBM27:
+			setTransmitPower(0, 0);
+			break;
+		default:
+			setTransmitPower(1, 1);
+	}
+}
+
+
+
+// overloaded
+void CommunicationClass::setTransmitPower()
+{
+	if (connectionState())
+	{
+		if (switchesR.b0 == 0)
+		{
+			// requested transmission power
+			setTransmitPower(switchesR.b6, switchesR.b5);
+		}
+		else
+		{
+			// auto transmission power when signal is
+			
+		}
+	}
+	else
+	{
+		// auto transmit power when signal lost
+		
+		if (timeAfterSL < MP_SET_TIME)      // 0 < x < MP
+			setTransmitPower(DBM21);
+		else if (timeAfterSL < HP_SET_TIME) // MP < x < HP
+			setTransmitPower(DBM24);
+		else
+			setTransmitPower(DBM27); // HP < x
+	}
+	
+	// always if power save mode set transmit power to lowest
+	if (workingMode == POWS_MODE) setTransmitPower(DBM18);
 }
 
 
@@ -138,26 +206,26 @@ void CommunicationClass::setWorkingMode(bool b1, bool b2)
 {
 	if (b1 == 1 && b2 == 1)
 	{
-		// 4
-		
+		// 4 - Searching for CanSat
+		workingMode = SEARCHING_MODE;
 	}
 	
 	else if (b1 == 1 && b2 == 0)
 	{
-		// 3
-		
+		// 3 - CanSat main mission
+		workingMode = MAINMISSION_MODE;
 	}
 	
 	else if (b1 == 0 && b2 == 1)
 	{
-		// 2
-		
+		// 2 - Normal communication
+		workingMode = NORMCOM_MODE;
 	}
 	
 	else
 	{
-		// 1
-		
+		// 1 - Power save mode
+		workingMode = POWS_MODE;
 	}
 }
 
@@ -168,26 +236,30 @@ void CommunicationClass::setOTASpeed(bool b1)
 	if (b1)
 	{
 		// 2.4kbps
-		
+		sped.b5 = 0;
+		sped.b6 = 0;
+		sped.b7 = 1;
 	}
 	
 	else
 	{
 		// 1.2kbps
-		
+		sped.b5 = 0;
+		sped.b6 = 0;
+		sped.b7 = 0;
 	}
 }
 
 
 
-void CommunicationClass::autoTransmitPower()
+void CommunicationClass::setFrequency(uint8_t freq)
 {
 	return;
 }
 
 
 
-void CommunicationClass::writeParamsToTransciever()
+void CommunicationClass::writeParamsToTransceiver()
 {
 	return;
 }
