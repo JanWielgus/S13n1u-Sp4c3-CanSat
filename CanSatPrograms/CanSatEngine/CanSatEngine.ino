@@ -15,6 +15,7 @@
 
 
 // function prototypes
+void run_program();
 void recieve();
 void send();
 void updateSensorsValues();
@@ -23,6 +24,7 @@ void updateSensorsValues();
 
 // variables
 bool readyToSend = false; // to send every second function run
+uint8_t run_counter = 1;  // to run program 5 times/sec
 
 
 
@@ -35,21 +37,37 @@ void setup()
 	
 	#ifdef _INO_DEBUG
 		Serial.begin(9600);
+		Serial.println("Program has just started");
 	#endif
 	
-	Tasker.dodajMidTask(recieve);
-	Tasker.dodajMidTask(send);
-	Tasker.dodajMidTask(updateSensorsValues);
+	Tasker.dodajHighTask(run_program);
 }
 
 void loop()
 {
 	// Code run in background
 	
+	
+	// Run tasker
 	Tasker.wykonajZadania();
 }
 
 //////////////////////////////////////////////////////////////////////////
+
+
+void run_program()
+{
+	// run this functions 5 times/sec
+	if (run_counter == 4)
+	{
+		recieve();
+		updateSensorsValues();
+		send();
+		
+		run_counter = 1;
+	}
+	else run_counter++;
+}
 
 
 void recieve()
@@ -73,10 +91,7 @@ void send()
 		
 		readyToSend = false;
 	}
-	else
-	{
-		readyToSend = true;
-	}
+	else readyToSend = true;
 }
 
 
