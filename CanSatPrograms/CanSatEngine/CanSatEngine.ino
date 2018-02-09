@@ -25,6 +25,7 @@ void updateSensorsValues();
 // variables
 bool readyToSend = false; // to send every second function run
 uint8_t run_counter = 1;  // to run program 5 times/sec
+uint8_t lpc_counter = 1; // Low Power Comsumption - to run sending 0.5 time/sec
 
 
 
@@ -74,7 +75,7 @@ void run_program()
 void recieve()
 {
 	// Recieving part ...
-	
+	com.odbierz();
 	
 	
 	// ... then set everything after
@@ -91,7 +92,7 @@ void recieve()
 	}
 	else
 	{
-		// something if isn't
+		// something if is no connection
 		
 		if (com.timeAfterSL > RESTORE_CONNECTION_PARAMS_TIME)
 		{
@@ -107,19 +108,49 @@ void recieve()
 
 void updateSensorsValues()
 {
-	sensor.readAngles();
-	sensor.readPressure();
-	sensor.readTemperature();
-	sensor.readPosition();
-	sensor.readCO2();
-	sensor.readtVOC();
-	sensor.readRelativeHumid();
-	sensor.readIonizingRadiation();
-	sensor.readPM25();
-	sensor.readVoltage();
-	sensor.readHeading();
+	uint8_t wmode = com.workingMode;
 	
-	sensor.saveLogData();
+	if (wmode == MAINMISSION_MODE)
+	{
+		sensor.readAngles();
+		sensor.readPressure();
+		sensor.readTemperature();
+		sensor.readPosition();
+		sensor.readCO2();
+		sensor.readtVOC();
+		sensor.readRelativeHumid();
+		sensor.readIonizingRadiation();
+		sensor.readPM25();
+		sensor.readVoltage();
+		sensor.readHeading();
+		
+		sensor.saveLogData();
+	}
+	else if (wmode == NORMCOM_MODE)
+	{
+		sensor.readAngles();
+		sensor.readPressure();
+		sensor.readTemperature();
+		sensor.readPosition();
+		sensor.readCO2();
+		sensor.readtVOC();
+		sensor.readRelativeHumid();
+		sensor.readIonizingRadiation();
+		sensor.readPM25();
+		sensor.readVoltage();
+		sensor.readHeading();
+	}
+	else if (wmode == SEARCHING_MODE)
+	{
+		sensor.readPosition();
+		sensor.readVoltage();
+	}
+	else // POWS_MODE
+	{
+		sensor.readPressure();
+		sensor.readTemperature();
+		sensor.readVoltage();
+	}
 }
 
 
@@ -128,15 +159,31 @@ void send()
 {
 	// Read needed data before send
 	
-	com.getOTASpeed(&com.settingsConfirmation.b3);
-	com.getTransmitPower(&com.settingsConfirmation.b7, &com.settingsConfirmation.b6);
-	com.getWorkingMode(&com.settingsConfirmation.b5, &com.settingsConfirmation.b4);
+	com.getTransceiverParams(); // prepare current transceiver parameters to send
 	
 	
 	// Sending every second run of function (2.5 times/s)
 	if (readyToSend)
 	{
+		uint8_t wmode = com.workingMode;
 		// Sending part
+		if (wmode == POWS_MODE || wmode == SEARCHING_MODE)
+		{
+			if (lpc_counter == 5)
+			{
+				// sending if power save
+				//if (wmode == POWS_MODE) com.wyslij(0x02);
+				//else com.wyslij(0x01);
+				
+				lpc_counter = 1;
+			}
+			else lpc_counter++;
+		}
+		else
+		{
+			// normal sending
+			//com.wyslij(0x00);
+		}
 		
 		readyToSend = false;
 	}

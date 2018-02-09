@@ -25,8 +25,12 @@
 // ===== CONSTANS ===== (eg. pins)
 
 	#define MAX_LOST_PACKETS 2          // If more -> signal lost mode
+	
+	// pins
 	#define MPU_INTERRUPT_PIN 2         // All interrupt: 2, 3, 18, 19, 20, 21
 	#define ION_RAD_PIN A0              // Ionizing radiation analog pin
+	#define LED1_PIN 16                 // led 1
+	#define LED2_PIN 18                 // led 2
 	
 	
 	// Working modes

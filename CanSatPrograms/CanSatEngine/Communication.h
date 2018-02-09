@@ -34,7 +34,7 @@ class CommunicationClass
 	bool connectionState();                                    // true - is; false - isn't
 	
 	void setTransmitPower(bool b1, bool b2);        // set transmitting power depending on b1 and b2
-	void setTransmitPower(uint8_t power)            // (overloaded) set transmitting power depending on program constans
+	void setTransmitPower(uint8_t power);           // (overloaded) set transmitting power depending on program constans
 	void setTransmitPower();                        // (overloaded) set transmit power (decision depending on connection state and request)
 	void setWorkingMode(bool b1, bool b2);
 	void setOTASpeed(bool b1);                      // set the Over The Air spped (in kbps)
@@ -44,9 +44,8 @@ class CommunicationClass
 	
 	void writeParamsToTransceiver();                // write parameters to transceiver
 	
-	void getOTASpeed(bool* b1);
-	void getTransmitPower(bool* b1, bool* b2);
-	void getWorkingMode(bool* b1, bool* b2);
+	//before sending
+	void getTransceiverParams();         // set proper bits of current transceiver parameters
 	
  private:
 	bool sprawdzSumeKontr(const uint8_t* buffer, size_t manipPacketSize); //xor'owanie

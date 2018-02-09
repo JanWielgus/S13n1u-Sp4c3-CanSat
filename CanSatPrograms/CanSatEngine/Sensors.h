@@ -15,6 +15,7 @@
 #include <Wire.h>
 #include "myMPU6050.h"
 #include "config.h"
+#include "typyBitowe.h"
 
 
 class SensorsClass
@@ -46,18 +47,20 @@ class SensorsClass
 	// to send, to save transmitted data
 	uint16_t compressPressure(float pres);
 	uint8_t compressHeading(float head);
+	uint16_t compressOneCoord(float coord);  // parameter: gpsX or gpsY, return: compressed version
+	
 	
 	
 // ===== VARIABLES =====
 	
 	struct //ypr_angles
 	{
-		double pitch;
-		double roll;
-		float  yaw;
+		float pitch;
+		float roll;
+		float yaw;
 	}DMPang;
 	
-	float pressure;
+	floatByte pressure;
 	uint16_t pressureComp;         // Compressed version, to send (or send full version)
 	uint8_t temperature;
 	uint8_t carbDiOx;              // CO2
@@ -66,10 +69,10 @@ class SensorsClass
 	uint8_t ionRadiation;          // Ionizing radiation
 	uint8_t pm25parts;             // PM2.5
 	uint8_t voltage;
-	float heading;
+	floatByte heading;
 	uint8_t headingComp;           // Compressed version, to send
-	float gpsX;
-	float gpsY;
+	floatByte gpsX;
+	floatByte gpsY;
   
 	
  

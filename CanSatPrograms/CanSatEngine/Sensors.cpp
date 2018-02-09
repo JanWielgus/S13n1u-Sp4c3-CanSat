@@ -237,11 +237,7 @@ void SensorsClass::readHeading()
 
 void SensorsClass:: saveLogData()
 {
-	if (com.workingMode == MAINMISSION_MODE)
-	{
-		// Log data on sd card
-		
-	}
+	// Log data on sd card
 }
 
 

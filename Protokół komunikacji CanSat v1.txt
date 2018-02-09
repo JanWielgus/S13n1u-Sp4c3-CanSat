@@ -27,15 +27,15 @@ Opis protokołu CanSat CanSat-GroundStation Serial:
 			bit 7 i bit 6 - aktualna moc nadawania (kolejno: 00 - 27dBm; 01 - 24dBm; 10 - 21dBm; 11 - 18dBm),
 			bit 5 i bit 4 - tryb pracy (kolejno: 00 - 1; 01 - 2; 10 - 3; 11 - 4),
 			bit 3 - prędkość OverTheAir (0 - 1.2; 1 - 2.4),
-			bit 2 - potwierdzenie odebrania ramki typu 0x01 (częstotliwość)
+			bit 2 - 
 	3. Aktualna temperatura (unsigned 8b)
 	4. Aktualne ciśnienie (float 32b)
 	5. cd^
 	6. cd^
 	7. cd^
-	8. Aktualna pozycja long - skalowane (unsigned 16b)
+	8. Aktualna pozycja long - skompresowana (unsigned 16b)
 	9. cd^
-	10. Aktualna pozycja lat - skalowane (unsigned 16b)
+	10. Aktualna pozycja lat - skompresowana (unsigned 16b)
 	11. cd^
 	12. CO2 (unsigned 8b)
 	13. tVOC (unsigned 8b)
@@ -43,7 +43,7 @@ Opis protokołu CanSat CanSat-GroundStation Serial:
 	15. Ionizing radiation (unsigned 8b)
 	16. PM2.5 (unsigned 8b)
 	17. Voltage (unsigned 8b)
-	18. Headnig (unsigned 8b) (compressed)
+	18. Heading (unsigned 8b) (compressed)
 	19. Roll (signed 8b)
 	20. Pitch (signed 8b)
 	
@@ -59,15 +59,15 @@ Opis protokołu CanSat CanSat-GroundStation Serial:
 	7. cd^
 	8. cd^
 	9. cd^
+	10. Voltage (unsigned 8b)
 
-	Typ ramki - najważniejsze odczyty (bajt 0: 0x02):
+	Typ ramki - low power consumption modes (bajt 0: 0x02):
 	0. XOR wszystkich następnych bajtów (suma kontrolna) (unsigned 8b)
 	1. Typ ramki - 0x02 najważniejsze odczyty (unsigned 8b)
-	2. Aktualne ciśnienie -skalowane (unsigned 16b)
+	2. Aktualne ciśnienie - skompresowane (unsigned 16b)
 	3. cd^
-	4. cd^
-	5. cd^
-	6. Aktualna temperatura (unsigned 8b)
+	4. Aktualna temperatura (unsigned 8b)
+	5. Voltage (unsigned 8b)
 	
 
 4. Pakiet kierunku PCapp--->GroundStation może występować w jednym typie:
@@ -135,6 +135,7 @@ Opis protokołu CanSat CanSat-GroundStation Serial:
 Ważne:
 	- Co jakiś czas prosi o wysłanie ramki z dokładną lokalizacją
 	- CanSat odsyła obecną moc nadawania i tryb pracy (chyba że w PowerSaving)
+	- przy 1200baud max 24 bajty/s
 	
 	
 	

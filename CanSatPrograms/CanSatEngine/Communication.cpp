@@ -198,6 +198,7 @@ void CommunicationClass::setTransmitPower()
 	
 	// always if power save mode set transmit power to lowest
 	if (workingMode == POWS_MODE) setTransmitPower(DBM18);
+	//else if (workingMode == SEARCHING_MODE) setTransmitPower(DBM27);
 }
 
 
@@ -264,3 +265,18 @@ void CommunicationClass::writeParamsToTransceiver()
 	return;
 }
 
+
+
+void CommunicationClass::getTransceiverParams()
+{
+	// power
+	settingsConfirmation.b7 = switchesR.b6;
+	settingsConfirmation.b6 = switchesR.b5;
+	
+	// working modes
+	settingsConfirmation.b5 = switchesR.b4;
+	settingsConfirmation.b4 = switchesR.b3;
+	
+	// OTA speed
+	settingsConfirmation.b3 = switchesR.b2;
+}
