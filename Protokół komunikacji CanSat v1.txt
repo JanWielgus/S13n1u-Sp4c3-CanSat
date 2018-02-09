@@ -103,7 +103,13 @@ Opis protokołu CanSat CanSat-GroundStation Serial:
 			bit 5 i bit 4 - aktualna moc nadawania GroundStation'a (kolejno: 00 - 27dBm; 01 - 24dBm; 10 - 21dBm; 11 - 18dBm),
 			bit 3 i bit 2 - tryb pracy (kolejno: 00 - 1; 01 - 2; 10 - 3; 11 - 4),
 			bit 1 - 
-	4. PacketsPerSecond (unsigned 8b)
+	4. Booleany stanów lotu i niepowodzeń (unsigned 8b):
+			bit 7 - liftoff
+			bit 6 - CanSat release
+			bit 5 - parachute is working
+			bit 4 - touchdown
+			bit 3 - too high falling velocity
+			bit 2 - too low falling velocity
 	5. Aktualna temperatura (unsigned 8b)
 	6. Aktualne ciśnienie (float 32b)
 	7. cd^
@@ -129,6 +135,13 @@ Opis protokołu CanSat CanSat-GroundStation Serial:
 	27. Prędkość spadania (unsigned 8b)
 	28. Roll (signed 8b)
 	29. Pitch (signed 8b)
+	30. PacketsPerSecond (unsigned 8b) (wysyłka x*10, odbiór x/10 - dla dokładności)
+	31. Average PacketsPerSecond (unsigned 8b) (wysyłka x*10, odbiór x/10 - dla dokładności)
+	32. PacketsSent (unsigned 16b)
+	33. cd^
+	34. PacketsReceived (unsigned 16b)
+	35. cd^
+	36. Estimated touchdown in [sec] (unsigned 8b)
 	
 	
 	

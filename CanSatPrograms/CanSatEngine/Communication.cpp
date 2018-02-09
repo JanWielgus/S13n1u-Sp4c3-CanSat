@@ -182,23 +182,27 @@ void CommunicationClass::setTransmitPower()
 		{
 			// auto transmission power when signal is
 			
+			// do napisania
+			setTransmitPower(DBM27); // temporary
 		}
 	}
 	else
 	{
 		// auto transmit power when signal lost
 		
-		if (timeAfterSL < MP_SET_TIME)      // 0 < x < MP
-			setTransmitPower(DBM21);
-		else if (timeAfterSL < HP_SET_TIME) // MP < x < HP
-			setTransmitPower(DBM24);
+		//first check working modes (pows - lowest, searching - highest)
+		if (workingMode == POWS_MODE || workingMode == SEARCHING_MODE)
+			setTransmitPower(workingMode); // pow = 1 && 18dbm = 1, same for searching and 27dbm so could be just this variable
 		else
-			setTransmitPower(DBM27); // HP < x
+		{
+			if (timeAfterSL < MP_SET_TIME)      // 0 < x < MP
+				setTransmitPower(DBM21);
+			else if (timeAfterSL < HP_SET_TIME) // MP < x < HP
+				setTransmitPower(DBM24);
+			else
+				setTransmitPower(DBM27); // HP < x
+		}
 	}
-	
-	// always if power save mode set transmit power to lowest
-	if (workingMode == POWS_MODE) setTransmitPower(DBM18);
-	//else if (workingMode == SEARCHING_MODE) setTransmitPower(DBM27);
 }
 
 
