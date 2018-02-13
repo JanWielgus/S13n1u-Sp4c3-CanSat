@@ -13,6 +13,7 @@
 
 #include <I2Cdev.h>
 #include <Wire.h>
+#include <TinyGPS++.h>
 #include "myMPU6050.h"
 #include "config.h"
 #include "typyBitowe.h"
@@ -24,6 +25,7 @@ class SensorsClass
 
  private:
 	MyMPU6050Class mpu;
+	TinyGPSPlus tGPS;
 	
  public:
 	void init();

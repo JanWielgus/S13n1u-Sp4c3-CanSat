@@ -74,7 +74,7 @@ void SensorsClass::init()
 	
 	
 	// ====== UBLOX NEO6M ======
-	
+	GPSserial.begin(9600);
 	
 	
 	// ====== OpenLog ======
@@ -181,7 +181,17 @@ void SensorsClass::readTemperature()
 
 void SensorsClass::readPosition()
 {
-	return;
+	while (GPSserial.available())
+		tGPS.encode(GPSserial.read());
+	
+	gpsX.value = tGPS.location.lat();
+	gpsY.value = tGPS.location.lng();
+	
+	/*
+		Warto:
+		gps.altitude.meters();
+		gps.speed.kmph();
+	*/
 }
 
 
@@ -223,7 +233,7 @@ void SensorsClass::readPM25()
 
 void SensorsClass::readVoltage()
 {
-	return;
+	voltage = min(analogRead(BATTERY_C1_PIN), analogRead(BATTERY_C2_PIN))/5; // 0-1023 to 0-204
 }
 
 

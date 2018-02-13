@@ -31,6 +31,8 @@
 	#define ION_RAD_PIN A0              // Ionizing radiation analog pin
 	#define LED1_PIN 16                 // led 1
 	#define LED2_PIN 18                 // led 2
+	#define BATTERY_C1_PIN A1           // battery cell 1 volatge analog
+	#define BATTERY_C2_PIN A2           // battery cell 2 volatge analog
 	
 	
 	// Working modes
@@ -83,6 +85,10 @@
 	
 	#define PITCH_OFFSET 0            // Offset osi x
 	#define ROLL_OFFSET  0            // Offset osi y
+	
+	
+	// GPS
+	#define GPSserial Serial2         // gps serial
 	
 
 
