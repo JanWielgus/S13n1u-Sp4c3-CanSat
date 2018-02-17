@@ -94,7 +94,7 @@ void MainWindow::on_GSautoPower_checkBox_clicked()
 
 void MainWindow::on_chartsShow_pushButton_clicked()
 {
-    dynCharts = new DynamicChartsWindow;
+    dynCharts = new DynamicChartsWindow(this);
     dynCharts->show();
 }
 
@@ -146,10 +146,14 @@ void MainWindow::on_connectGS_pushButton_clicked()
             ui->listOfDevicesGS_comboBox->clear();
             ui->gs_arduino_state_label->setText(notFoundText);
             ui->connectionStateGS_label->setText(connectedText);
+            ui->GS_ConnectionStatus_label->setText(connectedText); // main toolbar
             ui->connectGS_pushButton->setDisabled(true);
         }
         else
+        {
             qDebug() << "You don't have any devices to connect!\n";
+            ui->GS_ConnectionStatus_label->setText(noConnectionText);
+        }
     }
 }
 
@@ -164,6 +168,7 @@ void MainWindow::on_endConnectGS_pushButton_clicked()
         }
 
         ui->connectionStateGS_label->setText(notConnectedText);
+        ui->GS_ConnectionStatus_label->setText(noConnectionText);
         ui->connectGS_pushButton->setDisabled(false);
     }
 }

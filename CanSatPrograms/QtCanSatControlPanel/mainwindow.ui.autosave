@@ -585,7 +585,7 @@
           </rect>
          </property>
          <property name="title">
-          <string>Voltage</string>
+          <string>Battery volatge</string>
          </property>
          <widget class="QCustomPlot" name="widget" native="true">
           <property name="geometry">

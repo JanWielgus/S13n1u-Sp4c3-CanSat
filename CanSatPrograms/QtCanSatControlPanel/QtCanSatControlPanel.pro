@@ -6,7 +6,7 @@
 
 QT       += core gui serialport
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 TARGET = QtCanSatControlPanel
 TEMPLATE = app
@@ -28,14 +28,16 @@ SOURCES += \
         mainwindow.cpp \
     dynamicchartswindow.cpp \
     PacketSerial.cpp \
-    komunikacja.cpp
+    komunikacja.cpp \
+    qcustomplot.cpp
 
 HEADERS += \
         mainwindow.h \
     dynamicchartswindow.h \
     PacketSerial.h \
     komunikacja.h \
-    COBS.h
+    COBS.h \
+    qcustomplot.h
 
 FORMS += \
         mainwindow.ui \

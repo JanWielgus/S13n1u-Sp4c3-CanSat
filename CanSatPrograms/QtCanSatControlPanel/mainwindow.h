@@ -45,6 +45,7 @@ private:
     const QString connectedText = "Connected";
     const QString notFoundText = "Not found";
     const QString foundText = "Found";
+    const QString noConnectionText = "No connection";
 };
 
 #endif // MAINWINDOW_H
