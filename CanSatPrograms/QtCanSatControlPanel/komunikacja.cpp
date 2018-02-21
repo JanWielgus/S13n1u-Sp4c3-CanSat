@@ -94,9 +94,8 @@ void Komunikacja::wyslij(uint8_t typRamki)
 
     if (typRamki == KOMUN_RAMKA_PC_1_TYPE)
     {
-        buforT[2] = 5;
-        buforT[3] = 77;
-        buforT[4] = 78;
+        buforT[2] = booleansToSend1.bajt;
+        buforT[3] = booleansToSend2.bajt;
         // itd...
         // pamiętać o wielkości!!!
 

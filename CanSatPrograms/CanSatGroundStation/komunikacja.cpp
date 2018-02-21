@@ -31,8 +31,8 @@ void KomunikacjaClass::odbierzPriv(const uint8_t* bufferR, size_t PacketSize)
 {
 	if (bufferR[1] == KOMUN_RAMKA_PC_1_TYPE && PacketSize == KOMUN_RAMKA_PC_1_SIZE && sprawdzSumeKontr(bufferR, PacketSize))
 	{
-		// odbieranie kolejnych zmiennych
-		testowa1 = buforT[4];
+		receivedBooleans1.bajt = bufferR[2];
+		receivedBooleans2.bajt = bufferR[3];
 	}
 	
 	else if (bufferR[1] == KOMUN_RAMKA_PC_2_TYPE && PacketSize == KOMUN_RAMKA_PC_2_SIZE && sprawdzSumeKontr(bufferR, PacketSize))

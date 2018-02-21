@@ -64,6 +64,9 @@ class KomunikacjaClass
 	uint16_t packetsSent;
 	uint16_t packetsReceived;
 	uint8_t estTouchdown;
+	
+	bitByte receivedBooleans1;
+	bitByte receivedBooleans2;
 };
 
 extern KomunikacjaClass komun;

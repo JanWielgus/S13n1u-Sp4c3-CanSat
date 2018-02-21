@@ -74,6 +74,10 @@ public:
     uint16_t packetsSent;
     uint16_t packetsReceived;
     uint8_t estTouchdown;
+
+    // to send
+    bitByte booleansToSend1;
+    bitByte booleansToSend2;
 };
 
 extern Komunikacja komun;
