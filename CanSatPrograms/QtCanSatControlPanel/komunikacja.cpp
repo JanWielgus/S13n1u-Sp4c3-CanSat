@@ -38,11 +38,42 @@ void Komunikacja::odbierzPriv(const uint8_t* bufferR, size_t PacketSize)
 {
     if (bufferR[1] == KOMUN_RAMKA_ARDU_1_TYPE && PacketSize == KOMUN_RAMKA_ARDU_1_SIZE && sprawdzSumeKontr(bufferR, PacketSize))
     {
-        // costam = bufferR[2];
-        // itd...
-        // Jeżeli mniej niż ....size to zmniejszyć wielkość ....size
-        il_odebranych = 5; // ustawić tyle ile odebrano (do obsługi protezy)
-        qDebug() << "Rozkodowano ramkę mumer 1 od arduino :)" << bufferR[4] << " " << bufferR[3];
+        //booleans1.bajt = bufferR[2];
+        testowaTemp = bufferR[2];
+        booleans2.bajt = bufferR[3];
+        booleans3.bajt = bufferR[4];
+        temperature = bufferR[5];
+        pressure.bajt[0] = bufferR[6];
+        pressure.bajt[1] = bufferR[7];
+        pressure.bajt[2] = bufferR[8];
+        pressure.bajt[3] = bufferR[9];
+        gpsX.bajt[0] = bufferR[10];
+        gpsX.bajt[1] = bufferR[11];
+        gpsX.bajt[2] = bufferR[12];
+        gpsX.bajt[3] = bufferR[13];
+        gpsY.bajt[0] = bufferR[14];
+        gpsY.bajt[1] = bufferR[15];
+        gpsY.bajt[2] = bufferR[16];
+        gpsY.bajt[3] = bufferR[17];
+        carbDiOx = bufferR[18];
+        tVOC = bufferR[19];
+        humid = bufferR[20];
+        ionRadiation = bufferR[21];
+        pm25parts = bufferR[22];
+        voltage = bufferR[23];
+        headingComp = bufferR[24];
+        headingComp = bufferR[25];
+        radialVelocity = bufferR[26];
+        fallingVelocity = bufferR[27];
+        roll = bufferR[28];
+        pitch = bufferR[29];
+        pacPerSec = bufferR[30];
+        avPacPerSec = bufferR[31];
+        // low and high bytes int16
+        estTouchdown = bufferR[36];
+
+        il_odebranych = 37; // ustawić tyle ile odebrano (do obsługi protezy)
+        qDebug() << "Rozkodowano ramkę mumer 1 od arduino :)" << bufferR[2] << " " << bufferR[3];
 
     }
 

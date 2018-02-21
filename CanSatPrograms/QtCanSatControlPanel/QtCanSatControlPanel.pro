@@ -37,7 +37,8 @@ HEADERS += \
     PacketSerial.h \
     komunikacja.h \
     COBS.h \
-    qcustomplot.h
+    qcustomplot.h \
+    typyBitowe.h
 
 FORMS += \
         mainwindow.ui \

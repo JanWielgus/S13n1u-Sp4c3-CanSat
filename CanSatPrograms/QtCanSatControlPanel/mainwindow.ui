@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -269,7 +269,7 @@
             <x>4</x>
             <y>19</y>
             <width>209</width>
-            <height>311</height>
+            <height>314</height>
            </rect>
           </property>
           <layout class="QFormLayout" name="formLayout_2">
@@ -585,7 +585,7 @@
           </rect>
          </property>
          <property name="title">
-          <string>Voltage</string>
+          <string>Battery volatge</string>
          </property>
          <widget class="QCustomPlot" name="widget" native="true">
           <property name="geometry">

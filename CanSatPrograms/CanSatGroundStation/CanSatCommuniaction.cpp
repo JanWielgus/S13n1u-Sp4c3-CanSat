@@ -8,8 +8,7 @@ CanSatCommuniactionClass cscom;
 
 void CanSatCommuniactionClass::init()
 {
-
-
+	return;
 }
 
 
