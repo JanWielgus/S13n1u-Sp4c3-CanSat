@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Atmel Studio Solution File, Format Version 11.00
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "CanSatGroundStation", "CanSatGroundStation.cppproj", "{DC51DBC6-E666-4AA3-A6DB-BBCA059B9BF4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC51DBC6-E666-4AA3-A6DB-BBCA059B9BF4}.Debug|AVR.ActiveCfg = Debug|AVR
+		{DC51DBC6-E666-4AA3-A6DB-BBCA059B9BF4}.Debug|AVR.Build.0 = Debug|AVR
+		{DC51DBC6-E666-4AA3-A6DB-BBCA059B9BF4}.Release|AVR.ActiveCfg = Release|AVR
+		{DC51DBC6-E666-4AA3-A6DB-BBCA059B9BF4}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
