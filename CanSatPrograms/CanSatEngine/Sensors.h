@@ -14,6 +14,8 @@
 #include <I2Cdev.h>
 #include <Wire.h>
 #include <TinyGPS++.h>
+#include <SparkFunBME280.h>
+#include <SparkFunCCS811.h>
 #include "myMPU6050.h"
 #include "config.h"
 #include "typyBitowe.h"
@@ -26,8 +28,11 @@ class SensorsClass
  private:
 	MyMPU6050Class mpu;
 	TinyGPSPlus tGPS;
+	CCS811* ccs811;
+	BME280 myBME280;
 	
  public:
+	SensorsClass();
 	void init();
 	
 	// sensors data read
@@ -35,9 +40,7 @@ class SensorsClass
 	void readPressure();
 	void readTemperature();
 	void readPosition();
-	void readCO2();
-	void readtVOC();
-	void readRelativeHumid();
+	void readCCS811BME280(); // CO2, tVOC, relative humid in one
 	void readIonizingRadiation();
 	void readPM25();
 	void readVoltage();
@@ -53,7 +56,7 @@ class SensorsClass
 	
 	
 	
-// ===== VARIABLES =====
+// ===== VARIABLES =====    ( IF NOT SEND, LOG IT ON SD CARD !!! )
 	
 	struct //ypr_angles
 	{
@@ -63,18 +66,29 @@ class SensorsClass
 	}DMPang;
 	
 	floatByte pressure;
+	float pressureBME;
 	uint16_t pressureComp;         // Compressed version, to send (or send full version)
-	uint8_t temperature;
-	uint8_t carbDiOx;              // CO2
-	uint8_t tVOC;
-	uint8_t humid;
-	uint8_t ionRadiation;          // Ionizing radiation
-	uint8_t pm25parts;             // PM2.5
-	uint8_t voltage;
+	
+	uint8_t temperature;           // (send)
+	float temperatureFloat;
+	
+	uint8_t carbDiOx;              // CO2 (send)
+	uint16_t CO2int16;             // original size value
+	uint8_t tVOC;                  // (send)
+	uint16_t tVOCint16;            // original size value
+	uint8_t humid;                 // (send)
+	float humidFloat;              // original size value
+	
+	uint8_t ionRadiation;          // Ionizing radiation (send)
+	uint8_t pm25parts;             // PM2.5 (send)
+	uint8_t voltage;               // (send)
 	floatByte heading;
-	uint8_t headingComp;           // Compressed version, to send
-	floatByte gpsX;
-	floatByte gpsY;
+	uint8_t headingComp;           // Compressed version (send)
+	floatByte gpsX;                // (send)
+	floatByte gpsY;                // (send)
+	
+	float altitudeGPS;
+	float speedGPS;
   
 	
  

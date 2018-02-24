@@ -116,9 +116,7 @@ void updateSensorsValues()
 		sensor.readPressure();
 		sensor.readTemperature();
 		sensor.readPosition();
-		sensor.readCO2();
-		sensor.readtVOC();
-		sensor.readRelativeHumid();
+		sensor.readCCS811BME280();
 		sensor.readIonizingRadiation();
 		sensor.readPM25();
 		sensor.readVoltage();
@@ -132,9 +130,7 @@ void updateSensorsValues()
 		sensor.readPressure();
 		sensor.readTemperature();
 		sensor.readPosition();
-		sensor.readCO2();
-		sensor.readtVOC();
-		sensor.readRelativeHumid();
+		sensor.readCCS811BME280();
 		sensor.readIonizingRadiation();
 		sensor.readPM25();
 		sensor.readVoltage();

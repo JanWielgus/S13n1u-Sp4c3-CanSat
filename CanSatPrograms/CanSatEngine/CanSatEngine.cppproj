@@ -64,10 +64,6 @@
   <avrgcc.compiler.directories.IncludePaths>
     <ListValues>
       <Value>../../../CanSatEngine</Value>
-      <Value>C:/Users/Janek/Documents/Arduino/libraries/PacketSerial-master/src</Value>
-      <Value>C:/Users/Janek/Documents/Arduino/libraries/i2cdev</Value>
-      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
-      <Value>C:/Users/Janek/Documents/Arduino/libraries/Timer3</Value>
       <Value>C:/Program Files (x86)/Arduino/libraries</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
       <Value>C:/Users/Janek/Documents/Arduino/libraries</Value>
@@ -101,10 +97,6 @@
   <avrgcccpp.compiler.directories.IncludePaths>
     <ListValues>
       <Value>../../../CanSatEngine</Value>
-      <Value>C:/Users/Janek/Documents/Arduino/libraries/PacketSerial-master/src</Value>
-      <Value>C:/Users/Janek/Documents/Arduino/libraries/i2cdev</Value>
-      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
-      <Value>C:/Users/Janek/Documents/Arduino/libraries/Timer3</Value>
       <Value>C:/Program Files (x86)/Arduino/libraries</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
       <Value>C:/Users/Janek/Documents/Arduino/libraries</Value>
@@ -466,10 +458,6 @@ vmresolved.tools.path=C:\Program Files (x86)\Arduino\hardware\tools\avr
   <avrgcc.compiler.directories.IncludePaths>
     <ListValues>
       <Value>../../../CanSatEngine</Value>
-      <Value>C:/Users/Janek/Documents/Arduino/libraries/PacketSerial-master/src</Value>
-      <Value>C:/Users/Janek/Documents/Arduino/libraries/i2cdev</Value>
-      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
-      <Value>C:/Users/Janek/Documents/Arduino/libraries/Timer3</Value>
       <Value>C:/Program Files (x86)/Arduino/libraries</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
       <Value>C:/Users/Janek/Documents/Arduino/libraries</Value>
@@ -503,10 +491,6 @@ vmresolved.tools.path=C:\Program Files (x86)\Arduino\hardware\tools\avr
   <avrgcccpp.compiler.directories.IncludePaths>
     <ListValues>
       <Value>../../../CanSatEngine</Value>
-      <Value>C:/Users/Janek/Documents/Arduino/libraries/PacketSerial-master/src</Value>
-      <Value>C:/Users/Janek/Documents/Arduino/libraries/i2cdev</Value>
-      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
-      <Value>C:/Users/Janek/Documents/Arduino/libraries/Timer3</Value>
       <Value>C:/Program Files (x86)/Arduino/libraries</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
       <Value>C:/Users/Janek/Documents/Arduino/libraries</Value>

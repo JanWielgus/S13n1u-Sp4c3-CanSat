@@ -12,6 +12,12 @@ void dmpDataReady()
 }
 
 
+SensorsClass::SensorsClass()
+{
+	ccs811 = new CCS811(CCS811_ADDRESS); // otherwise not working
+}
+
+
 
 void SensorsClass::init()
 {
@@ -54,7 +60,20 @@ void SensorsClass::init()
 	
 	
 	// ====== CCS811 ======
-	
+		ccs811->begin();
+		
+		
+	// ====== BME280 ======
+		myBME280.settings.commInterface = I2C_MODE;
+		myBME280.settings.I2CAddress = 0x77;
+		myBME280.settings.runMode = 3;
+		myBME280.settings.tStandby = 0;
+		myBME280.settings.filter = 4;
+		myBME280.settings.tempOverSample = 5;
+		myBME280.settings.pressOverSample = 5;
+		myBME280.settings.humidOverSample = 5;
+		delay(10); //Make sure sensor had enough time to turn on. BME280 requires 2ms to start up.
+		myBME280.begin();
 	
 	
 	// ====== PMS5003 ======
@@ -74,7 +93,7 @@ void SensorsClass::init()
 	
 	
 	// ====== UBLOX NEO6M ======
-	GPSserial.begin(9600);
+		GPSserial.begin(9600);
 	
 	
 	// ====== OpenLog ======
@@ -187,39 +206,38 @@ void SensorsClass::readPosition()
 	gpsX.value = tGPS.location.lat();
 	gpsY.value = tGPS.location.lng();
 	
-	/*
-		Warto:
-		gps.altitude.meters();
-		gps.speed.kmph();
-	*/
+	altitudeGPS = tGPS.altitude.meters();
+	speedGPS = tGPS.speed.kmph();
 }
 
 
 
-void SensorsClass::readCO2()
+void SensorsClass::readCCS811BME280()
 {
-	return;
-}
-
-
-
-void SensorsClass::readtVOC()
-{
-	return;
-}
-
-
-
-void SensorsClass::readRelativeHumid()
-{
-	return;
+	if (ccs811->dataAvailable())
+	{
+		ccs811->readAlgorithmResults();
+		
+		CO2int16 = ccs811->getCO2();
+		// carbDiOx =                               !!!!!!!!!
+		tVOCint16 = ccs811->getTVOC();
+		// tVOC =                                 !!!!!!!!!!!!
+		float BMEtempC = myBME280.readTempC();
+		temperatureFloat = BMEtempC;
+		temperature = uint8_t(temperatureFloat); // to change!!!!
+		pressureBME = myBME280.readFloatPressure()/100; // hPa
+		humidFloat = myBME280.readFloatHumidity();
+		// humid = !!!!!!!!!!!!!!
+		
+		ccs811->setEnvironmentalData(humidFloat, temperatureFloat);
+	}
 }
 
 
 
 void SensorsClass::readIonizingRadiation()
 {
-	return;
+	ionRadiation = analogRead(ION_RAD_PIN)/5; // 0-1023 to 0-204
 }
 
 
