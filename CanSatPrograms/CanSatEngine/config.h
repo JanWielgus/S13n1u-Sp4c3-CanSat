@@ -91,9 +91,12 @@
 	#define GPSserial Serial2         // gps serial
 	
 	// CCS811 / BME280
-	#define CCS811_ADDRESS 0x5B          //Default I2C Address
-	//#define CCS811_ADDRESS 0x5A        //Alternate I2C Address
+	#define CCS811_ADDRESS 0x5B       // Default I2C Address
+	//#define CCS811_ADDRESS 0x5A     // Alternate I2C Address
 	#define PIN_NOT_WAKE 5
+	
+	// MS5611
+	#define MOVAVG_SIZE 8             // Amount of readings to average
 
 
 

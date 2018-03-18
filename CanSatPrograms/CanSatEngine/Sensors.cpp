@@ -15,6 +15,7 @@ void dmpDataReady()
 SensorsClass::SensorsClass()
 {
 	ccs811 = new CCS811(CCS811_ADDRESS); // otherwise not working
+	seaPres = 1013.25;
 }
 
 
@@ -89,8 +90,10 @@ void SensorsClass::init()
 	
 	
 	// ====== MS5611 ======
-	
-	
+		baro.init(MS561101BA_ADDR_CSB_LOW);
+		delay(100);
+		for (int i=0; i<MOVAVG_SIZE; i++)
+			movavg_buff[i] = baro.getPressure(MS561101BA_OSR_4096);
 	
 	// ====== UBLOX NEO6M ======
 		GPSserial.begin(9600);
@@ -186,7 +189,31 @@ uint8_t SensorsClass::compressHeading(float head)
 
 void SensorsClass::readPressure()
 {
-	return;
+	// temperature form baro is replaced with BME temperature
+	
+	pressure.value = baro.getPressure(MS561101BA_OSR_4096);
+	// pushAvg
+	movavg_buff[movavg_i] = pressure.value;
+	movavg_i = (movavg_i+1) % MOVAVG_SIZE;
+	// getAvg
+	float sum = 0.0;
+	for (int i=0; i<MOVAVG_SIZE; i++)
+		sum += movavg_buff[i];
+	pressure.value = sum/MOVAVG_SIZE;
+	
+	altitude = getAltitude(pressure.value, temperatureFloat);
+}
+
+
+float SensorsClass::getAltitude(float press, float temp)
+{
+	return ((pow((seaPres / press), 1/5.257) - 1.0) * (temp + 273.15)) / 0.0065;
+}
+
+
+void SensorsClass::setSeaLevelPressure(float pres)
+{
+	seaPres = pres;
 }
 
 

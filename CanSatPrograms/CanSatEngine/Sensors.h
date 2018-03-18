@@ -16,6 +16,7 @@
 #include <TinyGPS++.h>
 #include <SparkFunBME280.h>
 #include <SparkFunCCS811.h>
+#include <MS561101BA.h>
 #include "myMPU6050.h"
 #include "config.h"
 #include "typyBitowe.h"
@@ -30,6 +31,7 @@ class SensorsClass
 	TinyGPSPlus tGPS;
 	CCS811* ccs811;
 	BME280 myBME280;
+	MS561101BA baro = MS561101BA();
 	
  public:
 	SensorsClass();
@@ -53,6 +55,8 @@ class SensorsClass
 	uint16_t compressPressure(float pres);
 	uint8_t compressHeading(float head);
 	uint16_t compressOneCoord(float coord);  // parameter: gpsX or gpsY, return: compressed version
+	float getAltitude(float press, float temp);
+	void setSeaLevelPressure(float pres);
 	
 	
 	
@@ -68,6 +72,7 @@ class SensorsClass
 	floatByte pressure;
 	float pressureBME;
 	uint16_t pressureComp;         // Compressed version, to send (or send full version)
+	float altitude;
 	
 	uint8_t temperature;           // (send)
 	float temperatureFloat;
@@ -89,6 +94,10 @@ class SensorsClass
 	
 	float altitudeGPS;
 	float speedGPS;
+	
+	float seaPres;                 // To measure height
+	float movavg_buff[MOVAVG_SIZE];// Buffer of pressure average
+	int movavg_i=0;
   
 	
  
