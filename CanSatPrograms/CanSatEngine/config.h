@@ -96,7 +96,7 @@
 	#define PIN_NOT_WAKE 5
 	
 	// MS5611
-	#define MOVAVG_SIZE 8             // Amount of readings to average
+	
 
 
 

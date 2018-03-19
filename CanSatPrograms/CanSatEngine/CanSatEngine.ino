@@ -114,7 +114,7 @@ void updateSensorsValues()
 	{
 		sensor.readAngles();
 		sensor.readPressure();
-		sensor.readTemperature();
+		//sensor.readTemperature(); // In BME280 function
 		sensor.readPosition();
 		sensor.readCCS811BME280();
 		sensor.readIonizingRadiation();
@@ -128,7 +128,7 @@ void updateSensorsValues()
 	{
 		sensor.readAngles();
 		sensor.readPressure();
-		sensor.readTemperature();
+		//sensor.readTemperature(); // In BME280 function
 		sensor.readPosition();
 		sensor.readCCS811BME280();
 		sensor.readIonizingRadiation();
@@ -144,7 +144,7 @@ void updateSensorsValues()
 	else // POWS_MODE
 	{
 		sensor.readPressure();
-		sensor.readTemperature();
+		sensor.readTemperature(); // Temperature from BME
 		sensor.readVoltage();
 	}
 }

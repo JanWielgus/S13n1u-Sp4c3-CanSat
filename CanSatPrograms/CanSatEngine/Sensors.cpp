@@ -23,38 +23,38 @@ SensorsClass::SensorsClass()
 void SensorsClass::init()
 {
 	Wire.begin();
-	Wire.setClock(400000L);
+	//Wire.setClock(400000L); // So fast clock is not necessary
 	
 	// ====== MPU6050 DMP ======
-		mpu.initialize();
-		pinMode(MPU_INTERRUPT_PIN, INPUT);
+	mpu.initialize();
+	pinMode(MPU_INTERRUPT_PIN, INPUT);
 	
-		devStatus = mpu.dmpInitialize();
+	devStatus = mpu.dmpInitialize();
 	
-		// supply your own gyro offsets here, scaled for min sensitivity
-		mpu.setXGyroOffset(220);
-		mpu.setYGyroOffset(76);
-		mpu.setZGyroOffset(-85);
-		mpu.setZAccelOffset(1788); // 1688 factory default for my test chip
+	// supply your own gyro offsets here, scaled for min sensitivity
+	mpu.setXGyroOffset(220);
+	mpu.setYGyroOffset(76);
+	mpu.setZGyroOffset(-85);
+	mpu.setZAccelOffset(1788); // 1688 factory default for my test chip
 	
-		if (devStatus == 0)
-		{
-			mpu.setDMPEnabled(true);
+	if (devStatus == 0)
+	{
+		mpu.setDMPEnabled(true);
 		
-			attachInterrupt(digitalPinToInterrupt(MPU_INTERRUPT_PIN), dmpDataReady, RISING);
-			mpuIntStatus = mpu.getIntStatus();
+		attachInterrupt(digitalPinToInterrupt(MPU_INTERRUPT_PIN), dmpDataReady, RISING);
+		mpuIntStatus = mpu.getIntStatus();
 		
-			dmpReady = true;
+		dmpReady = true;
 		
-			packetSize = mpu.dmpGetFIFOPacketSize();
-		}
-		else
-		{
-			// ERROR!
-			// 1 = initial memory load failed
-			// 2 = DMP configuration updates failed
-			// (if it's going to break, usually the code will be 1)
-		}
+		packetSize = mpu.dmpGetFIFOPacketSize();
+	}
+	else
+	{
+		// ERROR!
+		// 1 = initial memory load failed
+		// 2 = DMP configuration updates failed
+		// (if it's going to break, usually the code will be 1)
+	}
 	
 	// ====== MPU6050 ======
 	
@@ -90,10 +90,15 @@ void SensorsClass::init()
 	
 	
 	// ====== MS5611 ======
-		baro.init(MS561101BA_ADDR_CSB_LOW);
-		delay(100);
-		for (int i=0; i<MOVAVG_SIZE; i++)
-			movavg_buff[i] = baro.getPressure(MS561101BA_OSR_4096);
+		//instead of while in example code
+		for (int i=0;  i<3; i++)
+		{
+			if (ms5611.begin(MS5611_ULTRA_HIGH_RES))
+			{
+				seaPres = (float)ms5611.readPressure();
+				break;
+			}
+		}
 	
 	// ====== UBLOX NEO6M ======
 		GPSserial.begin(9600);
@@ -191,17 +196,8 @@ void SensorsClass::readPressure()
 {
 	// temperature form baro is replaced with BME temperature
 	
-	pressure.value = baro.getPressure(MS561101BA_OSR_4096);
-	// pushAvg
-	movavg_buff[movavg_i] = pressure.value;
-	movavg_i = (movavg_i+1) % MOVAVG_SIZE;
-	// getAvg
-	float sum = 0.0;
-	for (int i=0; i<MOVAVG_SIZE; i++)
-		sum += movavg_buff[i];
-	pressure.value = sum/MOVAVG_SIZE;
-	
-	altitude = getAltitude(pressure.value, temperatureFloat);
+	pressure.value = ms5611.readPressure();
+	altitude = getAltitude((float)pressure.value, temperatureFloat);
 }
 
 
@@ -220,7 +216,9 @@ void SensorsClass::setSeaLevelPressure(float pres)
 
 void SensorsClass::readTemperature()
 {
-	return;
+	float BMEtempC = myBME280.readTempC();
+	temperatureFloat = BMEtempC;
+	temperature = uint8_t(temperatureFloat); // to change!!!!
 }
 
 
