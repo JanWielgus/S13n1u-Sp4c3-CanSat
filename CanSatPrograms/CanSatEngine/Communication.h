@@ -63,7 +63,7 @@ class CommunicationClass
 	
 	uint8_t workingMode;         // 1-PSmode, 2-norm comun, 3-main mission, 4-searching
 	
-	uint32_t timeAfterSL;        // time form time communication was lost (UPDATED AFTER connectionState() !!!)
+	uint32_t timeAfterSL;        // time after communication was lost (UPDATED AFTER connectionState() !!!)
 	
 	
 	// == SENT ==

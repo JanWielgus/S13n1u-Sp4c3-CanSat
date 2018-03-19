@@ -108,44 +108,33 @@ void recieve()
 
 void updateSensorsValues()
 {
+	// Data read every run
+	sensor.readPressure();
+	sensor.readTemperature();
+	sensor.readVoltage();
+	
 	uint8_t wmode = com.workingMode;
 	
-	if (wmode == MAINMISSION_MODE)
+	if (wmode == MAINMISSION_MODE || wmode == NORMCOM_MODE)
 	{
+		sensor.nowTime = millis();
 		sensor.readAngles();
-		sensor.readPressure();
-		//sensor.readTemperature(); // In BME280 function
 		sensor.readPosition();
 		sensor.readCCS811BME280();
 		sensor.readIonizingRadiation();
 		sensor.readPM25();
-		sensor.readVoltage();
 		sensor.readHeading();
 		
-		sensor.saveLogData();
-	}
-	else if (wmode == NORMCOM_MODE)
-	{
-		sensor.readAngles();
-		sensor.readPressure();
-		//sensor.readTemperature(); // In BME280 function
-		sensor.readPosition();
-		sensor.readCCS811BME280();
-		sensor.readIonizingRadiation();
-		sensor.readPM25();
-		sensor.readVoltage();
-		sensor.readHeading();
+		if (wmode == MAINMISSION_MODE)
+			sensor.saveLogData();
 	}
 	else if (wmode == SEARCHING_MODE)
 	{
 		sensor.readPosition();
-		sensor.readVoltage();
 	}
 	else // POWS_MODE
 	{
-		sensor.readPressure();
-		sensor.readTemperature(); // Temperature from BME
-		sensor.readVoltage();
+		
 	}
 }
 
@@ -153,11 +142,6 @@ void updateSensorsValues()
 
 void send()
 {
-	// Read needed data before send
-	
-	com.getTransceiverParams(); // prepare current transceiver parameters to send
-	
-	
 	// Sending every second run of function (2.5 times/s)
 	if (readyToSend)
 	{
@@ -165,20 +149,31 @@ void send()
 		// Sending part
 		if (wmode == POWS_MODE || wmode == SEARCHING_MODE)
 		{
-			if (lpc_counter == 5)
+			switch (wmode)
 			{
-				// sending if power save
-				//if (wmode == POWS_MODE) com.wyslij(0x02);
-				//else com.wyslij(0x01);
+				case POWS_MODE:
+					if (lpc_counter == 5)
+					{
+						//com.wyslij(0x02);
+						lpc_counter = 1;
+					}
+					else
+						lpc_counter++;
+					break;
 				
-				lpc_counter = 1;
+				case SEARCHING_MODE:
+					//com.wyslij(0x01);
+					break;
 			}
-			else lpc_counter++;
+				
 		}
 		else
 		{
+			com.getTransceiverParams(); // prepare current transceiver parameters to send
+			
 			// normal sending
 			//com.wyslij(0x00);
+			// if request for position -> also send(0x01) !!!
 		}
 		
 		readyToSend = false;

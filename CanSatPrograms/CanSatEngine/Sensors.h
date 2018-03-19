@@ -61,44 +61,62 @@ class SensorsClass
 	
 	
 // ===== VARIABLES =====    ( IF NOT SEND, LOG IT ON SD CARD !!! )
+// Pressure from MS5611 is long but from BME280 is float !
+
+	// ====== MPU6050 ======
+		struct //ypr_angles
+		{
+			float pitch;
+			float roll;
+			float yaw;
+		}DMPang;
+		// acceleration
+		
+	// ====== CCS811 ======
+		uint16_t CO2;
+		uint16_t tVOC;
 	
-	struct //ypr_angles
-	{
-		float pitch;
-		float roll;
-		float yaw;
-	}DMPang;
+	// ====== PMS5003 ======
+		uint8_t pm25parts;             // PM2.5 (send)
+		// Will be more variables in idk types
 	
-	// Pressure from MS5611 is long but from BME280 is float !
-	int32Byte pressure;
-	float pressureBME;
-	uint16_t pressureComp;         // Compressed version, to send (or send full version)
+	// ====== BME280 ======
+		float pressureBME;
+		uint8_t temperatureBME;      // compressed
+		float temperatureBMEFloat;   // full temperature
+		uint8_t humidBME;            // compressed
+		float humidBMEFloat;         // original size value
+	
+	// ====== HMC5883L ======
+		floatByte heading;
+		uint8_t headingComp; // Compressed version
+	
+	// ====== MS5611 ======
+		int32Byte pressure_main;
+		float temperatureBARO; // log
+	
+	// ====== UBLOX NEO6M ======
+		int32Byte gpsX;
+		int32Byte gpsY;
+		float altitudeGPS;
+		float speedGPS;
+	
+	// ====== ION RAD SENSOR ======
+		int16_t ionRad;       // just from analogRead
+		uint8_t ionRadComp;   // compressed version to send
+	
+	// ====== OTHER ======
+	
+	uint16_t pressureComp; // Compressed version, to send (or send full version)
 	float altitude;
 	
-	uint8_t temperature;           // (send)
-	float temperatureFloat;
+	int16_t voltageCell1;
+	int16_t voltageCell2;
+	uint8_t voltage;       // (send)
 	
-	uint8_t carbDiOx;              // CO2 (send)
-	uint16_t CO2int16;             // original size value
-	uint8_t tVOC;                  // (send)
-	uint16_t tVOCint16;            // original size value
-	uint8_t humid;                 // (send)
-	float humidFloat;              // original size value
+	uint32_t nowTime; // to log
 	
-	uint8_t ionRadiation;          // Ionizing radiation (send)
-	uint8_t pm25parts;             // PM2.5 (send)
-	uint8_t voltage;               // (send)
-	floatByte heading;
-	uint8_t headingComp;           // Compressed version (send)
-	floatByte gpsX;                // (send)
-	floatByte gpsY;                // (send)
-	
-	float altitudeGPS;
-	float speedGPS;
-	
-	float seaPres;                 // To measure height
-  
-	
+	float groundPres; // To measure height
  
  
  

@@ -29,23 +29,21 @@ Opis protokołu CanSat CanSat-GroundStation Serial:
 			bit 3 - prędkość OverTheAir (0 - 1.2; 1 - 2.4),
 			bit 2 - 
 	3. Aktualna temperatura (unsigned 8b)
-	4. Aktualne ciśnienie (float 32b)
+	4. Aktualne ciśnienie (long 32b)
 	5. cd^
 	6. cd^
 	7. cd^
-	8. Aktualna pozycja long - skompresowana (unsigned 16b)
+	8. CO2 (unsigned 16b)
 	9. cd^
-	10. Aktualna pozycja lat - skompresowana (unsigned 16b)
+	10. tVOC (unsigned 16b)
 	11. cd^
-	12. CO2 (unsigned 8b)
-	13. tVOC (unsigned 8b)
-	14. Relative humidity (unsigned 8b)
-	15. Ionizing radiation (unsigned 8b)
-	16. PM2.5 (unsigned 8b)
-	17. Voltage (unsigned 8b)
-	18. Heading (unsigned 8b) (compressed)
-	19. Roll (signed 8b)
-	20. Pitch (signed 8b)
+	12. Relative humidity (unsigned 8b)
+	13. Ionizing radiation (unsigned 8b)
+	14. PM2.5 (unsigned 8b)
+	15. Voltage (unsigned 8b)
+	16. Heading (unsigned 8b) (compressed)
+	17. Roll (signed 8b)
+	18. Pitch (signed 8b)
 	
 
 	Typ ramki - sama pozycja (bajt 0: 0x01):
@@ -115,11 +113,11 @@ Opis protokołu CanSat CanSat-GroundStation Serial:
 	7. cd^
 	8. cd^
 	9. cd^
-	10. Aktualna pozycja long - dokladna przy szukaniu (unsigned 16b)
+	10. Aktualna pozycja long - byte oznacza czy dokładna (unsigned 16b)
 	11. cd^
 	12. cd^
 	13. cd^
-	14. Aktualna pozycja lat - skalowane (unsigned 16b)
+	14. Aktualna pozycja lat - byte oznacza czy dokładna (unsigned 16b)
 	15. cd^
 	16. cd^
 	17. cd^
@@ -148,7 +146,7 @@ Opis protokołu CanSat CanSat-GroundStation Serial:
 Ważne:
 	- Co jakiś czas prosi o wysłanie ramki z dokładną lokalizacją
 	- CanSat odsyła obecną moc nadawania i tryb pracy (chyba że w PowerSaving)
-	- przy 1200baud max 24 bajty/s
+	- przy 1200baud max 24 bajty/s (komunikacja 5x/sekunde)
 	
 	
 	

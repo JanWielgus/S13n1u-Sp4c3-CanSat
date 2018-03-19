@@ -266,6 +266,7 @@ void CommunicationClass::setFrequency(uint8_t freq)
 
 void CommunicationClass::writeParamsToTransceiver()
 {
+	// write if was change in parameters
 	return;
 }
 

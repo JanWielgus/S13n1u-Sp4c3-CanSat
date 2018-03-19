@@ -41,4 +41,18 @@ union int32Byte
 };
 
 
+union int16Byte
+{
+	int16_t value;
+	char bajt[2];
+};
+
+
+union uint16Byte
+{
+	uint16_t value;
+	char bajt[2];
+};
+
+
 #endif /* TYPYBITOWE_H_ */

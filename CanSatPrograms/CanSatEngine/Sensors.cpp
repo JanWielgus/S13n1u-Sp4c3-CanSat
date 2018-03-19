@@ -15,7 +15,7 @@ void dmpDataReady()
 SensorsClass::SensorsClass()
 {
 	ccs811 = new CCS811(CCS811_ADDRESS); // otherwise not working
-	seaPres = 1013.25;
+	groundPres = 1013.25;
 }
 
 
@@ -95,7 +95,7 @@ void SensorsClass::init()
 		{
 			if (ms5611.begin(MS5611_ULTRA_HIGH_RES))
 			{
-				seaPres = (float)ms5611.readPressure();
+				groundPres = (float)ms5611.readPressure();
 				break;
 			}
 		}
@@ -196,20 +196,20 @@ void SensorsClass::readPressure()
 {
 	// temperature form baro is replaced with BME temperature
 	
-	pressure.value = ms5611.readPressure();
-	altitude = getAltitude((float)pressure.value, temperatureFloat);
+	pressure_main.value = ms5611.readPressure();
+	altitude = getAltitude((float)pressure_main.value, temperatureBMEFloat);
 }
 
 
 float SensorsClass::getAltitude(float press, float temp)
 {
-	return ((pow((seaPres / press), 1/5.257) - 1.0) * (temp + 273.15)) / 0.0065;
+	return ((pow((groundPres / press), 1/5.257) - 1.0) * (temp + 273.15)) / 0.0065;
 }
 
 
 void SensorsClass::setSeaLevelPressure(float pres)
 {
-	seaPres = pres;
+	groundPres = pres;
 }
 
 
@@ -217,8 +217,8 @@ void SensorsClass::setSeaLevelPressure(float pres)
 void SensorsClass::readTemperature()
 {
 	float BMEtempC = myBME280.readTempC();
-	temperatureFloat = BMEtempC;
-	temperature = uint8_t(temperatureFloat); // to change!!!!
+	temperatureBMEFloat = BMEtempC;
+	temperatureBME = uint8_t(temperatureBMEFloat); // to change!!!!
 }
 
 
@@ -228,8 +228,8 @@ void SensorsClass::readPosition()
 	while (GPSserial.available())
 		tGPS.encode(GPSserial.read());
 	
-	gpsX.value = tGPS.location.lat();
-	gpsY.value = tGPS.location.lng();
+	gpsX.value = tGPS.location.lat() * 10e7;
+	gpsY.value = tGPS.location.lng() * 10e7;
 	
 	altitudeGPS = tGPS.altitude.meters();
 	speedGPS = tGPS.speed.kmph();
@@ -243,18 +243,16 @@ void SensorsClass::readCCS811BME280()
 	{
 		ccs811->readAlgorithmResults();
 		
-		CO2int16 = ccs811->getCO2();
-		// carbDiOx =                               !!!!!!!!!
-		tVOCint16 = ccs811->getTVOC();
-		// tVOC =                                 !!!!!!!!!!!!
-		float BMEtempC = myBME280.readTempC();
-		temperatureFloat = BMEtempC;
-		temperature = uint8_t(temperatureFloat); // to change!!!!
-		pressureBME = myBME280.readFloatPressure()/100; // hPa
-		humidFloat = myBME280.readFloatHumidity();
-		// humid = !!!!!!!!!!!!!!
+		CO2 = ccs811->getCO2();
+		tVOC = ccs811->getTVOC();
 		
-		ccs811->setEnvironmentalData(humidFloat, temperatureFloat);
+		// Temperature in readTemperature method triggered apart
+		
+		pressureBME = myBME280.readFloatPressure(); // Pa
+		humidBMEFloat = myBME280.readFloatHumidity();
+		humidBME = humidBMEFloat/10;
+		
+		ccs811->setEnvironmentalData(humidBMEFloat, temperatureBMEFloat);
 	}
 }
 
@@ -262,7 +260,8 @@ void SensorsClass::readCCS811BME280()
 
 void SensorsClass::readIonizingRadiation()
 {
-	ionRadiation = analogRead(ION_RAD_PIN)/5; // 0-1023 to 0-204
+	ionRad = analogRead(ION_RAD_PIN);
+	ionRadComp = (float)ionRad/4.1; // 0-250
 }
 
 
@@ -276,7 +275,9 @@ void SensorsClass::readPM25()
 
 void SensorsClass::readVoltage()
 {
-	voltage = min(analogRead(BATTERY_C1_PIN), analogRead(BATTERY_C2_PIN))/5; // 0-1023 to 0-204
+	voltageCell1 = analogRead(BATTERY_C1_PIN);
+	voltageCell2 = analogRead(BATTERY_C2_PIN);
+	voltage = (float)min(voltageCell1, voltageCell2)/4.1; // 0-250, minimum of two cells
 }
 
 

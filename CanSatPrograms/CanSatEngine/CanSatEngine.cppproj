@@ -64,6 +64,15 @@
   <avrgcc.compiler.directories.IncludePaths>
     <ListValues>
       <Value>../../../CanSatEngine</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/PacketSerial-master/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/i2cdev</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/TinyGPSPlus-1.0.2/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/SparkFun_BME280/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/SparkFun_CCS811/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/Arduino-MS5611</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/SPI/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/Timer3</Value>
       <Value>C:/Program Files (x86)/Arduino/libraries</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
       <Value>C:/Users/Janek/Documents/Arduino/libraries</Value>
@@ -97,6 +106,15 @@
   <avrgcccpp.compiler.directories.IncludePaths>
     <ListValues>
       <Value>../../../CanSatEngine</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/PacketSerial-master/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/i2cdev</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/TinyGPSPlus-1.0.2/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/SparkFun_BME280/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/SparkFun_CCS811/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/Arduino-MS5611</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/SPI/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/Timer3</Value>
       <Value>C:/Program Files (x86)/Arduino/libraries</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
       <Value>C:/Users/Janek/Documents/Arduino/libraries</Value>
@@ -117,7 +135,7 @@
   <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
 </AvrGccCpp>
     </ToolchainSettings>
-    <VMSETTING_IncludePaths>../../../CanSatEngine;C:/Program Files (x86)/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries;C:/Users/Janek/Documents/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/mega;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/avr/;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.2/include;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.3/include;C:/Users/Janek/Documents/Arduino/libraries/PacketSerial-master/src;C:/Users/Janek/Documents/Arduino/libraries/i2cdev;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src;C:/Users/Janek/Documents/Arduino/libraries/Timer3;</VMSETTING_IncludePaths>
+    <VMSETTING_IncludePaths>../../../CanSatEngine;C:/Program Files (x86)/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries;C:/Users/Janek/Documents/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/mega;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/avr/;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.2/include;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.3/include;C:/Users/Janek/Documents/Arduino/libraries/PacketSerial-master/src;C:/Users/Janek/Documents/Arduino/libraries/i2cdev;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src;C:/Users/Janek/Documents/Arduino/libraries/Timer3;C:/Users/Janek/Documents/Arduino/libraries/TinyGPSPlus-1.0.2/src;C:/Users/Janek/Documents/Arduino/libraries/SparkFun_BME280/src;C:/Users/Janek/Documents/Arduino/libraries/SparkFun_CCS811/src;C:/Users/Janek/Documents/Arduino/libraries/Arduino-MS5611;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/SPI/src;</VMSETTING_IncludePaths>
     <VisualMicroSettings>
       <VisualMicroSettings>
         <arduino.board.name>mega_atmega2560</arduino.board.name>
@@ -458,6 +476,15 @@ vmresolved.tools.path=C:\Program Files (x86)\Arduino\hardware\tools\avr
   <avrgcc.compiler.directories.IncludePaths>
     <ListValues>
       <Value>../../../CanSatEngine</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/PacketSerial-master/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/i2cdev</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/TinyGPSPlus-1.0.2/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/SparkFun_BME280/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/SparkFun_CCS811/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/Arduino-MS5611</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/SPI/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/Timer3</Value>
       <Value>C:/Program Files (x86)/Arduino/libraries</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
       <Value>C:/Users/Janek/Documents/Arduino/libraries</Value>
@@ -491,6 +518,15 @@ vmresolved.tools.path=C:\Program Files (x86)\Arduino\hardware\tools\avr
   <avrgcccpp.compiler.directories.IncludePaths>
     <ListValues>
       <Value>../../../CanSatEngine</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/PacketSerial-master/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/i2cdev</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/TinyGPSPlus-1.0.2/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/SparkFun_BME280/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/SparkFun_CCS811/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/Arduino-MS5611</Value>
+      <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/SPI/src</Value>
+      <Value>C:/Users/Janek/Documents/Arduino/libraries/Timer3</Value>
       <Value>C:/Program Files (x86)/Arduino/libraries</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries</Value>
       <Value>C:/Users/Janek/Documents/Arduino/libraries</Value>
@@ -511,7 +547,7 @@ vmresolved.tools.path=C:\Program Files (x86)\Arduino\hardware\tools\avr
   <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
 </AvrGccCpp>
     </ToolchainSettings>
-    <VMSETTING_IncludePaths>../../../CanSatEngine;C:/Program Files (x86)/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries;C:/Users/Janek/Documents/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/mega;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/avr/;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.2/include;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.3/include;C:/Users/Janek/Documents/Arduino/libraries/PacketSerial-master/src;C:/Users/Janek/Documents/Arduino/libraries/i2cdev;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src;C:/Users/Janek/Documents/Arduino/libraries/Timer3;</VMSETTING_IncludePaths>
+    <VMSETTING_IncludePaths>../../../CanSatEngine;C:/Program Files (x86)/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries;C:/Users/Janek/Documents/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/mega;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/avr/;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.2/include;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.3/include;C:/Users/Janek/Documents/Arduino/libraries/PacketSerial-master/src;C:/Users/Janek/Documents/Arduino/libraries/i2cdev;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src;C:/Users/Janek/Documents/Arduino/libraries/Timer3;C:/Users/Janek/Documents/Arduino/libraries/TinyGPSPlus-1.0.2/src;C:/Users/Janek/Documents/Arduino/libraries/SparkFun_BME280/src;C:/Users/Janek/Documents/Arduino/libraries/SparkFun_CCS811/src;C:/Users/Janek/Documents/Arduino/libraries/Arduino-MS5611;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/SPI/src;</VMSETTING_IncludePaths>
     <VisualMicroSettings>
       <VisualMicroSettings>
         <arduino.board.name>mega_atmega2560</arduino.board.name>
